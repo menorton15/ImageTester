@@ -3,12 +3,24 @@ package com.example.imagetester;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.LightingColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.BitmapDrawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
+
+    ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
         Bitmap mergedImages = createSingleImageFromMultipleImages(bigImage, smallImage, 485, 700);
         mergedImages = createSingleImageFromMultipleImages(mergedImages, smallImage, 1650, 700);
 
-        ImageView img = findViewById(R.id.imageView5);
-
+        img = findViewById(R.id.imageView5);
         img.setImageBitmap(mergedImages);
 
     }
@@ -45,5 +56,25 @@ public class MainActivity extends AppCompatActivity {
         ImageView img = findViewById(R.id.imageView5);
 
         img.setImageBitmap(mergedImages);
+    }
+
+    public void changePaint(View view){
+        /*BitmapDrawable bd = (BitmapDrawable) img.getDrawable();
+        Bitmap bm = bd.getBitmap();
+
+        Paint paint = new Paint();
+        ColorFilter filter = new PorterDuffColorFilter(ContextCompat.getColor(this, R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
+
+        paint.setColorFilter(filter);
+
+        Canvas canvas = new Canvas(bm);
+        canvas.drawBitmap(bm,0,0,paint);
+        img.setImageBitmap(bm);
+        */
+
+//        LightingColorFilter filter = new LightingColorFilter(Color.WHITE, Color.BLUE);
+        ColorMatrix filter = new ColorMatrix();
+        filter.setRotate(1, 90f);
+        img.setColorFilter(new ColorMatrixColorFilter(filter));
     }
 }
