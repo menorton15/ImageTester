@@ -25,37 +25,32 @@
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/jeep_body" />
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/imageView5"
-            android:onClick="changeTire"
-            android:text="Button" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/button4"
-            android:onClick="changePaint"
-            android:text="Button" />
-    </RelativeLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <FrameLayout
-            android:id="@+id/frameLayout2"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:layout_editor_absoluteY="187dp">
+            android:layout_below="@id/imageView5">
 
-        </FrameLayout>
-    </android.support.constraint.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="changePaint"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="changeTire"
+                    android:text="Button" />
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
