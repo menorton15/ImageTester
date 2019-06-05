@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         mergedImages = createSingleImageFromMultipleImages(mergedImages, smallImage, 1650, 700);
 
         img = findViewById(R.id.imageView5);
-        img.setImageBitmap(mergedImages);
+        img.setImageBitmap(mergedImages); //Mark Merge Conflict
 
     }
 
