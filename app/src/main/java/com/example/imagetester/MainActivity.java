@@ -18,13 +18,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
     //Comment from Wendy new
     //Comment from Josh
+
+    //Marks Comment
     String test = "Mark Test";
+    List<String> Test = null;
+
     ImageView img;
 
     @Override
@@ -38,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         mergedImages = createSingleImageFromMultipleImages(mergedImages, smallImage, 1650, 700);
 
         img = findViewById(R.id.imageView5);
-        img.setImageBitmap(mergedImages);
+        img.setImageBitmap(mergedImages); //Mark Merge Conflict
 
     }
 
