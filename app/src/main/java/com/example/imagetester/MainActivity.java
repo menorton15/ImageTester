@@ -25,10 +25,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     //Comment from Wendy new
     //Comment from Josh
-
-    //Marks Comment
-    String test = "Mark Test";
-    List<String> Test = null;
+    //Comment from Mark
 
     ImageView img;
 
@@ -44,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         mergedImages = createSingleImageFromMultipleImages(mergedImages, smallImage, 1650, 700);
 
         img = findViewById(R.id.imageView5);
-        img.setImageBitmap(mergedImages); //Mark Merge Conflict
+        img.setImageBitmap(mergedImages);
 
     }
 
