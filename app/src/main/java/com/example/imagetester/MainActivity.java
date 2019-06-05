@@ -42,11 +42,11 @@ public class MainActivity extends AppCompatActivity {
         mergedImages = createSingleImageFromMultipleImages(mergedImages, smallImage, 1650, 700);
 
         img = findViewById(R.id.imageView5);
-        img.setImageBitmap(mergedImages); //Mark Merge Conflict
+        img.setImageBitmap(mergedImages); //Mark Merge Conflict to the moon and back
 
     }
 
-    // Merge conflicts to the moon and back
+    // Merge conflicts galore
 
     private Bitmap createSingleImageFromMultipleImages(Bitmap firstImage, Bitmap secondImage, int x, int y){
 
