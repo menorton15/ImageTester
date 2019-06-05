@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // Merge conflicts galore
+    // Merge conflicts galore and more.
 
     private Bitmap createSingleImageFromMultipleImages(Bitmap firstImage, Bitmap secondImage, int x, int y){
 
@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        LightingColorFilter filter = new LightingColorFilter(Color.WHITE, Color.BLUE);
         ColorMatrix filter = new ColorMatrix();
+        filter.reset();
         filter.setRotate(1, 90f);
         img.setColorFilter(new ColorMatrixColorFilter(filter));
     }
