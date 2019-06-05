@@ -49,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Bitmap createSingleImageFromMultipleImages(Bitmap firstImage, Bitmap secondImage, int x, int y){
 
-        Bitmap result = Bitmap.createBitmap(firstImage.getWidth(), firstImage.getHeight(), firstImage.getConfig());
+        Bitmap result = Bitmap.createBitmap(firstImage);
         Canvas canvas = new Canvas(result);
+        Log.i("Information", "Canvas width is " + canvas.getWidth());
         canvas.drawBitmap(firstImage, 0f, 0f, null);
         canvas.drawBitmap(secondImage, x, y, null);
         return result;
@@ -64,7 +65,11 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView img = findViewById(R.id.imageView5);
 
+
         img.setImageBitmap(mergedImages);
+
+
+        Log.i("Information: ", "Imageview width is " + img.getWidth());
     }
 
     public void changePaint(View view){
