@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         img = findViewById(R.id.imageView5);
         img.setImageBitmap(mergedImages); //Mark Merge Conflict
+        test = test + "Mark Test";
 
     }
 
