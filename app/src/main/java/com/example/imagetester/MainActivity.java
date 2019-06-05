@@ -24,7 +24,11 @@ import android.widget.ImageView;
 public class MainActivity extends AppCompatActivity {
     //Comment from Wendy
     //Comment from Josh
+
+    //Marks Comment
     String test = "Mark Test";
+
+
     ImageView img;
 
     @Override
