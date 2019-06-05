@@ -15,6 +15,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Bitmap bigImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_body);
+        Log.i("Information: ","Width is " + Integer.toString(bigImage.getWidth()));
         Bitmap smallImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire);
         Bitmap mergedImages = createSingleImageFromMultipleImages(bigImage, smallImage, 485, 700);
         mergedImages = createSingleImageFromMultipleImages(mergedImages, smallImage, 1650, 700);
