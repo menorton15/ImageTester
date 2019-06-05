@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Bitmap createSingleImageFromMultipleImages(Bitmap firstImage, Bitmap secondImage, int x, int y){
 
-        Bitmap result = Bitmap.createBitmap(firstImage);
+        Bitmap result = Bitmap.createBitmap(firstImage.getWidth(), firstImage.getHeight(), firstImage.getConfig());
         Canvas canvas = new Canvas(result);
         Log.i("Information", "Canvas width is " + canvas.getWidth());
         canvas.drawBitmap(firstImage, 0f, 0f, null);
