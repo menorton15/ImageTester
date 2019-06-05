@@ -18,8 +18,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+
+
+
 public class MainActivity extends AppCompatActivity {
     //Comment from Wendy
+    String test = "Mark Test";
+
     ImageView img;
 
     @Override
