@@ -51,9 +51,12 @@ public class MainActivity extends AppCompatActivity {
 
         Bitmap result = Bitmap.createBitmap(firstImage.getWidth(), firstImage.getHeight(), firstImage.getConfig());
         Canvas canvas = new Canvas(result);
+        int newX = x * firstImage.getWidth() / 2400;
+        int newY = y * firstImage.getHeight() / 1260;
         Log.i("Information", "Canvas width is " + canvas.getWidth());
+        Log.i("Information", "Canvas height is " + canvas.getHeight());
         canvas.drawBitmap(firstImage, 0f, 0f, null);
-        canvas.drawBitmap(secondImage, x, y, null);
+        canvas.drawBitmap(secondImage, newX, newY, null);
         return result;
     }
 
