@@ -92,6 +92,14 @@ public class MainActivity extends AppCompatActivity {
 //        LightingColorFilter filter = new LightingColorFilter(Color.WHITE, Color.BLUE);
         BitmapDrawable bd = (BitmapDrawable) img.getDrawable();
         Bitmap image = bd.getBitmap();
+
+
+        /****************************************************************************
+         * This code is for changing the color, however it is currently too unstable
+         * to be used reliably and will need to be run on a separate thread if used
+         * in the final project.
+         * **************************************************************************
+         *
         for (int x = 0; x < image.getWidth(); x++){
             for (int y = 0; y < image.getHeight(); y++){
                 int pixel = image.getPixel(x,y);
@@ -110,5 +118,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //img.setImageBitmap(image);
+         */
     }
 }
