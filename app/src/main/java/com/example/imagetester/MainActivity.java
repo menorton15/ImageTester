@@ -90,9 +90,25 @@ public class MainActivity extends AppCompatActivity {
         */
 
 //        LightingColorFilter filter = new LightingColorFilter(Color.WHITE, Color.BLUE);
-        ColorMatrix filter = new ColorMatrix();
-        filter.reset();
-        filter.setRotate(1, 90f);
-        img.setColorFilter(new ColorMatrixColorFilter(filter));
+        BitmapDrawable bd = (BitmapDrawable) img.getDrawable();
+        Bitmap image = bd.getBitmap();
+        for (int x = 0; x < image.getWidth(); x++){
+            for (int y = 0; y < image.getHeight(); y++){
+                int pixel = image.getPixel(x,y);
+                int red = Color.red(pixel);
+                int blue = Color.blue(pixel);
+                int green = Color.green(pixel);
+                int color2 = Color.RED;
+
+
+                if (Math.abs (red - Color.red (color2)) > 10 && Math.abs (green - Color.green (color2)) <= 120 && Math.abs (blue - Color.blue (color2)) <= 120 && red > 100 ){
+                    int newPixel = pixel;
+
+                    //image.setPixel(x,y, Color.rgb(0, 0, Color.blue(Color.BLUE)));
+                }
+            }
+        }
+
+        //img.setImageBitmap(image);
     }
 }
