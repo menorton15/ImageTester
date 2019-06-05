@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // Merge conflicts galore
+    // Merge conflicts to the moon and back
 
     private Bitmap createSingleImageFromMultipleImages(Bitmap firstImage, Bitmap secondImage, int x, int y){
 
