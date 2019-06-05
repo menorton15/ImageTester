@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     //Comment from Wendy new
     //Comment from Josh
 
-    //Marks Comment new comment
+    //Marks Comment
     String test = "Mark Test";
 
 
