@@ -20,6 +20,7 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
     //Comment from Wendy
+    //Comment from Josh
     ImageView img;
 
     @Override
