@@ -18,7 +18,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Marks Comment
     String test = "Mark Test";
-
+    List<String> Test = null;
 
     ImageView img;
 
