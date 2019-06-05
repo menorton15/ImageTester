@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         Bitmap bigImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_body);
         Log.i("Information: ","Width is " + Integer.toString(bigImage.getWidth()));
         Bitmap smallImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire);
-        Bitmap mergedImages = createSingleImageFromMultipleImages(bigImage, smallImage, 485, 700);
-        mergedImages = createSingleImageFromMultipleImages(mergedImages, smallImage, 1650, 700);
+        Bitmap mergedImages = mergeImages(bigImage, smallImage, 485, 700);
+        mergedImages = mergeImages(mergedImages, smallImage, 1650, 700);
 
         img = findViewById(R.id.imageView5);
         img.setImageBitmap(mergedImages);
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Merge conflicts galore and more.
 
-    private Bitmap createSingleImageFromMultipleImages(Bitmap firstImage, Bitmap secondImage, int x, int y){
+    private Bitmap mergeImages(Bitmap firstImage, Bitmap secondImage, int x, int y){
 
         Bitmap result = Bitmap.createBitmap(firstImage.getWidth(), firstImage.getHeight(), firstImage.getConfig());
         Canvas canvas = new Canvas(result);
@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
     public void changeTire(View view) {
         Bitmap bigImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_body);
         Bitmap smallImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire_2);
-        Bitmap mergedImages = createSingleImageFromMultipleImages(bigImage, smallImage, 485, 700);
-        mergedImages = createSingleImageFromMultipleImages(mergedImages, smallImage, 1650, 700);
+        Bitmap mergedImages = mergeImages(bigImage, smallImage, 485, 700);
+        mergedImages = mergeImages(mergedImages, smallImage, 1650, 700);
 
         ImageView img = findViewById(R.id.imageView5);
 
