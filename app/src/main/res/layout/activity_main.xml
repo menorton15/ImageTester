@@ -68,7 +68,7 @@
                         android:background="@android:color/darker_gray"
                         android:minWidth="100dp"
                         android:onClick="changeTire"
-                        android:text="Button"
+                        android:text="Change Tire"
                         android:textColor="@android:color/background_dark" />
 
                     <Button
@@ -81,7 +81,7 @@
                         android:layout_marginRight="0dp"
                         android:minWidth="100dp"
                         android:onClick="changePaint"
-                        android:text="Button"
+                        android:text="Change Color"
                         android:textColor="@android:color/black" />
 
                     <Button
