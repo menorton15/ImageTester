@@ -141,9 +141,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         /****************************************************************************
-         * This code is for changing the color, however it is currently too unstable
-         * to be used reliably and will need to be run on a separate thread if used
-         * in the final project.
+         * This code is for changing the color, however it will need to be run on a
+         * separate thread if used in the final project.
          * **************************************************************************
          */
         for (int x = 0; x < image.getWidth(); x++){
@@ -155,10 +154,18 @@ public class MainActivity extends AppCompatActivity {
                 int color2 = Color.RED;
 
 
+                // TODO: Add variables newBlue, and newGreen and set those variables based on the desired color.
                 if (Math.abs (red - Color.red (color2)) > 10 && Math.abs (green - Color.green (color2)) <= 120 && Math.abs (blue - Color.blue (color2)) <= 120 && red > 100 ){
                     int newPixel = pixel;
 
-                    //image.setPixel(x,y, Color.rgb(0, 0, Color.blue(Color.BLUE)));
+                    int newRed = red - 150;
+                    if (newRed > 255){
+                        newRed = 255;
+                    } else if (newRed < 0){
+                        newRed = 0;
+                    }
+
+                    image.setPixel(x,y, Color.rgb(blue, green, red));
                 }
             }
         }
