@@ -24,25 +24,26 @@
             android:layout_marginBottom="16dp"
             android:baselineAlignBottom="false"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/jeep_body" />
+            app:srcCompat="@drawable/jeep_body"
+            android:layout_alignParentEnd="true" />
 
-        <HorizontalScrollView
+        <RelativeLayout
             android:id="@+id/menu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toStartOf="@id/imageView5"
             android:layout_toLeftOf="@id/imageView5">
 
-            <LinearLayout
+            <HorizontalScrollView
+                android:id="@+id/menuBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="0dp"
-                android:background="@android:color/darker_gray"
-                android:orientation="horizontal">
+                android:scrollbarAlwaysDrawHorizontalTrack="false"
+                android:scrollbarAlwaysDrawVerticalTrack="false"
+                android:scrollbarSize="0dp"
+                android:scrollbars="none">
 
-                <Button
-                    android:id="@+id/button4"
-                    style="?android:attr/buttonBarButtonStyle"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="0dp"
@@ -50,62 +51,91 @@
                     android:layout_marginTop="0dp"
                     android:layout_marginEnd="0dp"
                     android:layout_marginRight="0dp"
+                    android:layout_marginBottom="0dp"
                     android:background="@android:color/darker_gray"
-                    android:minWidth="100dp"
-                    android:onClick="changeTire"
-                    android:text="Button"
-                    android:textColor="@android:color/background_dark" />
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/button5"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginRight="0dp"
-                    android:minWidth="100dp"
-                    android:onClick="changePaint"
-                    android:text="Button"
-                    android:textColor="@android:color/black" />
+                    <Button
+                        android:id="@+id/button4"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginRight="0dp"
+                        android:background="@android:color/darker_gray"
+                        android:minWidth="100dp"
+                        android:onClick="changeTire"
+                        android:text="Button"
+                        android:textColor="@android:color/background_dark" />
 
-                <Button
-                    android:id="@+id/button6"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginRight="0dp"
-                    android:minWidth="100dp"
-                    android:text="Button"
-                    android:textColor="@android:color/black" />
+                    <Button
+                        android:id="@+id/button5"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginRight="0dp"
+                        android:minWidth="100dp"
+                        android:onClick="changePaint"
+                        android:text="Button"
+                        android:textColor="@android:color/black" />
 
-                <Button
-                    android:id="@+id/button7"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginRight="0dp"
-                    android:minWidth="100dp"
-                    android:text="Button"
-                    android:textColor="@android:color/black" />
+                    <Button
+                        android:id="@+id/button6"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginRight="0dp"
+                        android:minWidth="100dp"
+                        android:text="Button"
+                        android:textColor="@android:color/black" />
 
-                <Button
-                    android:id="@+id/button8"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/button7"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginRight="0dp"
+                        android:minWidth="100dp"
+                        android:text="Button"
+                        android:textColor="@android:color/black" />
+
+                    <Button
+                        android:id="@+id/button8"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginRight="0dp"
+                        android:minWidth="100dp"
+                        android:text="Button"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <ScrollView
+                android:id="@+id/partsList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/menuBar">
+
+                <LinearLayout
+                    android:id="@+id/parts"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginRight="0dp"
-                    android:minWidth="100dp"
-                    android:text="Button"
-                    android:textColor="@android:color/black" />
-            </LinearLayout>
-        </HorizontalScrollView>
+                    android:orientation="vertical" />
+            </ScrollView>
+
+        </RelativeLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -115,6 +145,7 @@
             android:layout_toRightOf="@id/menu">
 
             <LinearLayout
+                android:id="@+id/shoppingCart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
