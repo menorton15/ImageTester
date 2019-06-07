@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.List;
@@ -76,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
         img.setImageBitmap(mergedImages);
 
-
-
+        Button button = findViewById(R.id.button4);
+        button.setBackgroundColor(Color.LTGRAY);
 
 
     }
