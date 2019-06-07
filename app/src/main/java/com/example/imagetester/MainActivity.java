@@ -16,7 +16,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -37,12 +39,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Bitmap bigImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_body);
-        Log.i("Information: ","Width is " + Integer.toString(bigImage.getWidth()));
         Bitmap smallImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire);
+        Log.i("Information: ","Width is " + Integer.toString(smallImage.getWidth()));
         Bitmap mergedImages = mergeImages(bigImage, smallImage, 485, 700);
         mergedImages = mergeImages(mergedImages, smallImage, 1650, 700);
 
         img = findViewById(R.id.imageView5);
+        img.setOnTouchListener(handleTouch);
         img.setImageBitmap(mergedImages);
 
     }
@@ -75,10 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        img.setOnTouchListener(handleTouch);
 
 
-        Log.i("Information: ", "Imageview width is " + img.getWidth());
     }
 
     private View.OnTouchListener handleTouch = new View.OnTouchListener() {
@@ -88,13 +89,31 @@ public class MainActivity extends AppCompatActivity {
 
             int x = (int) event.getX();
             int y = (int) event.getY();
+            Display display = getWindowManager().getDefaultDisplay();
+            Point anchorPoint = new Point(485,700);
+
+            int tireWidth = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire).getWidth();
+            int tireHeight = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire).getHeight();
+
+            int minX = (anchorPoint.x) * img.getWidth() / 2400 ;
+            int minY = (anchorPoint.y) * img.getHeight() / 1260;
+            int maxX = (anchorPoint.x + tireWidth) * img.getWidth() / 2400 ;
+            int maxY = (anchorPoint.y + tireHeight) * img.getHeight() / 1260;
 
             Point location = new Point(x, y);
 
             img.getX();
 
             if (event.getAction() == MotionEvent.ACTION_DOWN){
-
+                Log.i("Display", "Display is " + display.getWidth() + "x" + display.getHeight());
+                Log.i("Touch","X = " + location.x + ", Y = " + location.y);
+                Log.i("Touch", "Min x is " + minX + "; Max x is " + maxX);
+                Log.i("Touch", "Min y is " + minY + "; Max y is " + maxY);
+                Log.i("Information: ", "Imageview width is " + img.getWidth());
+                Log.i("Information: ", "Imageview height is " + img.getHeight());
+                if (x <= maxX && x >= minX && y <= maxY && y >= minY){
+                    changeTire(img);
+                }
             }
 
             return true;
