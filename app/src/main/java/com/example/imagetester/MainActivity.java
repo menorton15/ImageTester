@@ -9,6 +9,7 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
@@ -16,6 +17,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -72,8 +74,32 @@ public class MainActivity extends AppCompatActivity {
         img.setImageBitmap(mergedImages);
 
 
+
+        img.setOnTouchListener(handleTouch);
+
+
         Log.i("Information: ", "Imageview width is " + img.getWidth());
     }
+
+    private View.OnTouchListener handleTouch = new View.OnTouchListener() {
+
+        @Override
+        public boolean onTouch(View view, MotionEvent event) {
+
+            int x = (int) event.getX();
+            int y = (int) event.getY();
+
+            Point location = new Point(x, y);
+
+            img.getX();
+
+            if (event.getAction() == MotionEvent.ACTION_DOWN){
+
+            }
+
+            return true;
+        }
+    };
 
     public void changePaint(View view){
         /*BitmapDrawable bd = (BitmapDrawable) img.getDrawable();
@@ -99,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
          * to be used reliably and will need to be run on a separate thread if used
          * in the final project.
          * **************************************************************************
-         *
+         */
         for (int x = 0; x < image.getWidth(); x++){
             for (int y = 0; y < image.getHeight(); y++){
                 int pixel = image.getPixel(x,y);
@@ -117,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        //img.setImageBitmap(image);
-         */
+        img.setImageBitmap(image);
+
     }
 }
