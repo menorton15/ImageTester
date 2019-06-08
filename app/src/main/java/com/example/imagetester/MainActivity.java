@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 // TODO: Add variables newBlue, and newGreen and set those variables based on the desired color.
-                if (Math.abs (red - Color.red (color2)) > 10 && Math.abs (green - Color.green (color2)) <= 120 && Math.abs (blue - Color.blue (color2)) <= 120 && red > 100 ){
+                if (Math.abs (red - Color.red (color2)) > 10 && red > 50 && red < 250 ){
                     int newPixel = pixel;
 
                     int newRed = red - 150;
