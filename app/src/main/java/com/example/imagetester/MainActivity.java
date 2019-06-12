@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         img.setOnTouchListener(handleTouch);
         img.setImageBitmap(mergedImages);
 
+
     }
 
     // Merge conflicts galore and more.
