@@ -89,29 +89,9 @@ public class MainActivity extends AppCompatActivity {
 
             int x = (int) event.getX();
             int y = (int) event.getY();
-            Display display = getWindowManager().getDefaultDisplay();
-            Point anchorPoint = new Point(485,700);
-
-            int tireWidth = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire).getWidth();
-            int tireHeight = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire).getHeight();
-
-            int minX = (anchorPoint.x) * img.getWidth() / 2400 ;
-            int minY = (anchorPoint.y) * img.getHeight() / 1260;
-            int maxX = (anchorPoint.x + tireWidth) * img.getWidth() / 2400 ;
-            int maxY = (anchorPoint.y + tireHeight) * img.getHeight() / 1260;
-
-            Point location = new Point(x, y);
-
-            img.getX();
 
             if (event.getAction() == MotionEvent.ACTION_DOWN){
-                Log.i("Display", "Display is " + display.getWidth() + "x" + display.getHeight());
-                Log.i("Touch","X = " + location.x + ", Y = " + location.y);
-                Log.i("Touch", "Min x is " + minX + "; Max x is " + maxX);
-                Log.i("Touch", "Min y is " + minY + "; Max y is " + maxY);
-                Log.i("Information: ", "Imageview width is " + img.getWidth());
-                Log.i("Information: ", "Imageview height is " + img.getHeight());
-                if (x <= maxX && x >= minX && y <= maxY && y >= minY){
+                if (isTouchNearBackWheel(x,y)){
                     changeTire(img);
                 }
             }
@@ -119,6 +99,33 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
+
+    public boolean isTouchNearBackWheel(int x, int y) {
+
+        Point anchorPoint = new Point(485,700);
+
+        int tireWidth = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire).getWidth();
+        int tireHeight = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire).getHeight();
+
+        int minX = (anchorPoint.x) * img.getWidth() / 2400 ;
+        int minY = (anchorPoint.y) * img.getHeight() / 1260;
+        int maxX = (anchorPoint.x + tireWidth) * img.getWidth() / 2400 ;
+        int maxY = (anchorPoint.y + tireHeight) * img.getHeight() / 1260;
+
+        Display display = getWindowManager().getDefaultDisplay();
+
+        Log.i("Display", "Display is " + display.getWidth() + "x" + display.getHeight());
+        Log.i("Touch","X = " + x + ", Y = " + y);
+        Log.i("Touch", "Min x is " + minX + "; Max x is " + maxX);
+        Log.i("Touch", "Min y is " + minY + "; Max y is " + maxY);
+        Log.i("Information: ", "Imageview width is " + img.getWidth());
+        Log.i("Information: ", "Imageview height is " + img.getHeight());
+
+        if (x <= maxX && x >= minX && y <= maxY && y >= minY){
+            return true;
+        }
+        return false;
+    }
 
     public void changePaint(View view){
         /*BitmapDrawable bd = (BitmapDrawable) img.getDrawable();

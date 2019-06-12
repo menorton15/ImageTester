@@ -1,6 +1,8 @@
 package com.example.imagetester;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.view.Display;
 
 import org.junit.Test;
 
@@ -34,12 +36,5 @@ public class ExampleUnitTest {
         assertTrue(isTouchNearBackWheel(touchPoint.getPoint()));
     }
 
-    public void isTouchNearBackWheel(Point A) {
-        int anchorX = backWheel.anchor().getX();
-        int anchorY = backWheel.anchor().getY();
-        int distanceX = tireWidth;
-        int distanceY = tireHeight;
-
-
-    }
+    
 }
