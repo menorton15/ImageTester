@@ -53,6 +53,6 @@ public class ExampleUnitTest {
         if (x <= maxX && x >= minX && y <= maxY && y >= minY){
             return true;
         }
-
+        return false;
     }
 }
