@@ -34,6 +34,21 @@
             android:layout_toStartOf="@id/imageView5"
             android:layout_toLeftOf="@id/imageView5">
 
+            <Spinner
+                android:id="@+id/spinnerModel"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/spinnerYear"
+                android:layout_alignStart="@+id/spinnerYear"
+                android:layout_alignLeft="@+id/spinnerYear"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="492dp"
+                android:layout_marginRight="200dp" />
+
             <HorizontalScrollView
                 android:id="@+id/menuBar"
                 android:layout_width="match_parent"
@@ -169,29 +184,33 @@
 
             <Spinner
                 android:id="@+id/spinnerYear"
-                android:layout_width="116dp"
-                android:layout_height="39dp"
-                android:layout_alignParentTop="true"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/spinnerVehicleType"
+                android:layout_alignStart="@+id/spinnerVehicleType"
+                android:layout_alignLeft="@+id/spinnerVehicleType"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="132dp"
-                android:layout_marginEnd="217dp"
-                android:layout_marginRight="217dp" />
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="492dp"
+                android:layout_marginRight="300dp" />
 
             <Spinner
                 android:id="@+id/spinnerVehicleType"
-                android:layout_width="99dp"
-                android:layout_height="37dp"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="131dp"
-                android:layout_marginEnd="523dp"
-                android:layout_marginRight="523dp" />
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="492dp"
+                android:layout_marginRight="492dp" />
 
         </RelativeLayout>
 
