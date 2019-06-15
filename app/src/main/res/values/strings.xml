@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Boise 4x4</string>
+
+    <string-array name="vehicleTypes">
+        <item>UTV</item>
+        <item>JEEP</item>
+    </string-array>
+
+
+
 </resources>

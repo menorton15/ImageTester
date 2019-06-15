@@ -21,8 +21,10 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import java.util.List;
 
@@ -48,6 +50,17 @@ public class MainActivity extends AppCompatActivity {
         img = findViewById(R.id.imageView5);
         img.setOnTouchListener(handleTouch);
         img.setImageBitmap(mergedImages);
+
+        //Spinners with vehicle drop down info for initial user selection
+        Spinner vehicleType = (Spinner) findViewById(R.id.spinnerVehicleType);
+        ArrayAdapter<String> vehicleAdapter = new ArrayAdapter<String>(MainActivity.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.vehicleTypes));
+        vehicleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        vehicleType.setAdapter(vehicleAdapter);
+
+
+
+
     }
 
     // Merge conflicts galore and more.
