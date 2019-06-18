@@ -41,7 +41,7 @@ public class ExampleUnitTest {
     public boolean isTouchNearBackWheel(int x, int y) {
 
         Point anchorPoint = new Point(485,700);
-        
+
         int tireWidth = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire).getWidth();
         int tireHeight = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire).getHeight();
 
