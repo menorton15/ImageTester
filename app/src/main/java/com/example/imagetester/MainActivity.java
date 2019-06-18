@@ -21,10 +21,8 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Spinner;
 
 import java.util.List;
 
@@ -50,30 +48,6 @@ public class MainActivity extends AppCompatActivity {
         img = findViewById(R.id.imageView5);
         img.setOnTouchListener(handleTouch);
         img.setImageBitmap(mergedImages);
-
-        //Spinners with vehicle drop down info for initial user selection
-
-        //Spinner for Vehicle type
-        Spinner vehicleType = (Spinner) findViewById(R.id.spinnerVehicleType);
-        ArrayAdapter<String> vehicleTypeAdapter = new ArrayAdapter<String>(MainActivity.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.vehicleTypes));
-        vehicleTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        vehicleType.setAdapter(vehicleTypeAdapter);
-
-        //Spinner for Vehicle Model
-        Spinner vehicleModel = (Spinner) findViewById(R.id.spinnerModel);
-        ArrayAdapter<String> vehicleModelAdapter = new ArrayAdapter<String>(MainActivity.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.vehicleModels));
-        vehicleModelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        vehicleModel.setAdapter(vehicleModelAdapter);
-
-        //Spinner for Vehicle Year
-        Spinner vehicleYear = (Spinner) findViewById(R.id.spinnerYear);
-        ArrayAdapter<String> vehicleYearAdapter = new ArrayAdapter<String>(MainActivity.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.vehicleYear));
-        vehicleYearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        vehicleYear.setAdapter(vehicleYearAdapter);
-
     }
 
     // Merge conflicts galore and more.

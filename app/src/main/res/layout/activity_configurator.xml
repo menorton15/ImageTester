@@ -14,18 +14,18 @@
             android:id="@+id/imageView5"
             android:layout_width="300dp"
             android:layout_height="150dp"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
             android:layout_marginBottom="16dp"
             android:baselineAlignBottom="false"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/jeep_body"
-            android:layout_alignParentEnd="true" />
+            app:srcCompat="@drawable/jeep_body" />
 
         <RelativeLayout
             android:id="@+id/menu"
@@ -38,6 +38,8 @@
                 android:id="@+id/menuBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignRight="@id/menu"
+                android:layout_alignParentTop="true"
                 android:scrollbarAlwaysDrawHorizontalTrack="false"
                 android:scrollbarAlwaysDrawVerticalTrack="false"
                 android:scrollbarSize="0dp"
@@ -68,7 +70,7 @@
                         android:background="@android:color/darker_gray"
                         android:minWidth="100dp"
                         android:onClick="changeTire"
-                        android:text="Change Tire"
+                        android:text="TIRES"
                         android:textColor="@android:color/background_dark" />
 
                     <Button
@@ -93,7 +95,7 @@
                         android:layout_marginTop="0dp"
                         android:layout_marginRight="0dp"
                         android:minWidth="100dp"
-                        android:text="Button"
+                        android:text="SHOCKS"
                         android:textColor="@android:color/black" />
 
                     <Button
@@ -105,7 +107,7 @@
                         android:layout_marginTop="0dp"
                         android:layout_marginRight="0dp"
                         android:minWidth="100dp"
-                        android:text="Button"
+                        android:text="LIGHT BARS"
                         android:textColor="@android:color/black" />
 
                     <Button
@@ -126,7 +128,11 @@
                 android:id="@+id/partsList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/menuBar">
+                android:layout_below="@id/menuBar"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="0dp">
 
                 <LinearLayout
                     android:id="@+id/parts"
@@ -138,9 +144,12 @@
         </RelativeLayout>
 
         <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="322dp"
+            android:layout_height="418dp"
             android:layout_below="@id/imageView5"
+            android:layout_marginStart="-2dp"
+            android:layout_marginLeft="-2dp"
+            android:layout_marginTop="17dp"
             android:layout_toEndOf="@id/menu"
             android:layout_toRightOf="@id/menu">
 
