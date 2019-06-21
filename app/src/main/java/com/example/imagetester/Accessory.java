@@ -20,4 +20,8 @@ public abstract class Accessory {
         return null;
     }
 
+    Bitmap getImage(){
+        return image;
+    }
+
 }
