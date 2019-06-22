@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Boise 4x4</string>
+    <string name="submit_button">Submit</string>
+    <string name="cart_heading">Wish List</string>
+    <string name="default_cart_text">Your wish list is empty.</string>
+    <string name="accessory_name">Item name</string>
+    <string name="accessory_price">Price</string>
+    <string name="accessory_description">Item description</string>
+    <string name="accessory_part_number">Item number</string>
+    <string name="total_price">Total price</string>
+
 </resources>

@@ -8,6 +8,8 @@ import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -15,14 +17,34 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 public class Configurator extends AppCompatActivity {
 
     ImageView img;
+
+    private RecyclerView myRecyclerView;
+    private RecyclerView.Adapter myAdapter;
+    private RecyclerView.LayoutManager myLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ArrayList<VehiclePart> cartList = new ArrayList<>();
+
+        cartList.add(new VehiclePart("Price", "Part number", "Part name", "Part description"));
+        cartList.add(new VehiclePart("Price 2", "Part number 2", "Part name 2", "Part description 2"));
+        cartList.add(new VehiclePart("Price 3", "Part number 3", "Part name 3", "Part description 3"));
+
+        myRecyclerView = findViewById(R.id.cartRecyclerView);
+        myRecyclerView.setHasFixedSize(true);
+        myLayoutManager = new LinearLayoutManager(this);
+        myAdapter = new RecycleViewAdapter(cartList);
+
+        myRecyclerView.setLayoutManager(myLayoutManager);
+        myRecyclerView.setAdapter(myAdapter);
 
         Bitmap bigImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_body);
         Bitmap smallImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire);
@@ -35,7 +57,6 @@ public class Configurator extends AppCompatActivity {
         img.setImageBitmap(mergedImages);
     }
 
-    // Merge conflicts galore and more.
 
     private Bitmap mergeImages(Bitmap firstImage, Bitmap secondImage, int x, int y){
 

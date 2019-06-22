@@ -10,6 +10,26 @@ public class VehiclePart {
     private String partName;
     private String partDescription;
     private String partManufacturer;
+    private String priceAsString;
+
+
+    public VehiclePart(AccessoryType accessoryType, Float cost, Bitmap partImage,
+                       String partID, String partName, String partDescription, String partManufacturer) {
+        this.accessoryType = accessoryType;
+        this.cost = cost;
+        this.partImage = partImage;
+        this.partID = partID;
+        this.partName = partName;
+        this.partDescription = partDescription;
+        this.partManufacturer = partManufacturer;
+    }
+
+    public VehiclePart(String priceAsString, String partID, String partName, String partDescription) {
+        this.priceAsString = priceAsString;
+        this.partID = partID;
+        this.partName = partName;
+        this.partDescription = partDescription;
+    }
 
     public AccessoryType getAccessoryType() {
         return accessoryType;
@@ -65,5 +85,13 @@ public class VehiclePart {
 
     public void setPartManufacturer(String partManufacturer) {
         this.partManufacturer = partManufacturer;
+    }
+
+    public String getPriceAsString() {
+        return priceAsString;
+    }
+
+    public void setPriceAsString(String priceAsString) {
+        this.priceAsString = priceAsString;
     }
 }
