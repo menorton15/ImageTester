@@ -1,8 +1,9 @@
 package com.example.imagetester;
 
 import android.graphics.Bitmap;
+import android.graphics.Point;
 
-public class VehiclePart {
+public abstract class VehiclePart {
     private AccessoryType accessoryType;
     private Float cost;
     private Bitmap partImage;
@@ -66,4 +67,6 @@ public class VehiclePart {
     public void setPartManufacturer(String partManufacturer) {
         this.partManufacturer = partManufacturer;
     }
+
+    abstract Point getReferencePoint(Point anchor);
 }
