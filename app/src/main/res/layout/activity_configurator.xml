@@ -34,10 +34,59 @@
             android:layout_toStartOf="@id/imageView5"
             android:layout_toLeftOf="@id/imageView5">
 
+            <LinearLayout
+                android:id="@+id/selector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/spinnerYear3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/spinnerModel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spinnerModel3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/spinnerVehicleType"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerYear" />
+
+                <Spinner
+                    android:id="@+id/spinnerVehicleType3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerModel" />
+            </LinearLayout>
+
             <HorizontalScrollView
                 android:id="@+id/menuBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/selector"
                 android:scrollbarAlwaysDrawHorizontalTrack="false"
                 android:scrollbarAlwaysDrawVerticalTrack="false"
                 android:scrollbarSize="0dp"
@@ -142,25 +191,31 @@
         </RelativeLayout>
 
         <ScrollView
+            android:id="@+id/scrollCart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/imageView5"
             android:layout_toEndOf="@id/menu"
-            android:layout_toRightOf="@id/menu">
+            android:layout_toRightOf="@id/menu"
+            android:layout_above="@id/button2">
 
             <LinearLayout
                 android:id="@+id/shoppingCart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Button" />
             </LinearLayout>
         </ScrollView>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/menu"
+            android:layout_toRightOf="@id/menu"
+            android:layout_alignParentBottom="true"
+            android:text="Button" />
 
     </RelativeLayout>
 
