@@ -178,7 +178,6 @@
                         android:textColor="@android:color/black" />
                 </LinearLayout>
             </HorizontalScrollView>
-
             <ScrollView
                 android:id="@+id/partsList"
                 android:layout_width="match_parent"

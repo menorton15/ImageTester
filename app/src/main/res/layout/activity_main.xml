@@ -179,7 +179,7 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <ScrollView
+            <LinearLayout
                 android:id="@+id/partsList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -189,41 +189,50 @@
                 android:layout_marginEnd="0dp"
                 android:layout_marginRight="0dp">
 
-                <LinearLayout
-                    android:id="@+id/parts"
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/accessoryListRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" />
-            </ScrollView>
+                    android:scrollbars="vertical"/>
+
+            </LinearLayout>
 
         </RelativeLayout>
 
-        <ScrollView
+        <LinearLayout
             android:id="@+id/scrollCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/imageView5"
             android:layout_toEndOf="@id/menu"
             android:layout_toRightOf="@id/menu"
-            android:layout_above="@id/button2">
+            android:layout_above="@id/button2"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/shoppingCart"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/cartRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"/>
+
+            <TextView
+                android:id="@+id/totalPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:text="@string/total_price"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
-            </LinearLayout>
-        </ScrollView>
+        </LinearLayout>
 
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_toEndOf="@id/menu"
             android:layout_toRightOf="@id/menu"
-            android:layout_alignParentBottom="true"
-            android:text="Button" />
+            android:text="@string/submit_button" />
 
         <View
             android:id="@+id/divider"
