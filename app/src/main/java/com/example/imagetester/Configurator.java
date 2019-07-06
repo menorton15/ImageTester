@@ -27,8 +27,8 @@ public class Configurator extends AppCompatActivity {
         Bitmap bigImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_body);
         Bitmap smallImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire);
         Log.i("Information: ","Width is " + Integer.toString(smallImage.getWidth()));
-        Bitmap mergedImages = mergeImages(bigImage, smallImage, 485, 700);
-        mergedImages = mergeImages(mergedImages, smallImage, 1650, 700);
+        Bitmap mergedImages = ImageMerger.mergeImages(bigImage, smallImage, 485, 700);
+        mergedImages = ImageMerger.mergeImages(mergedImages, smallImage, 1650, 700);
 
         img = findViewById(R.id.imageView5);
         img.setOnTouchListener(handleTouch);
@@ -53,8 +53,8 @@ public class Configurator extends AppCompatActivity {
     public void changeTire(View view) {
         Bitmap bigImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_body);
         Bitmap smallImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire_2);
-        Bitmap mergedImages = mergeImages(bigImage, smallImage, 485, 700);
-        mergedImages = mergeImages(mergedImages, smallImage, 1650, 700);
+        Bitmap mergedImages = ImageMerger.mergeImages(bigImage, smallImage, 485, 700);
+        mergedImages = ImageMerger.mergeImages(mergedImages, smallImage, 1650, 700);
 
         ImageView img = findViewById(R.id.imageView5);
 

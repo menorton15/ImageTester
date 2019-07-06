@@ -34,10 +34,61 @@
             android:layout_toStartOf="@id/imageView5"
             android:layout_toLeftOf="@id/imageView5">
 
+            <LinearLayout
+                android:id="@+id/selector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/spinnerYear3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/spinnerModel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spinnerModel3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/spinnerVehicleType"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerYear" />
+
+                <Spinner
+                    android:id="@+id/spinnerVehicleType3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerModel" />
+            </LinearLayout>
+
             <HorizontalScrollView
                 android:id="@+id/menuBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/selector"
+                android:fillViewport="true"
+                android:measureAllChildren="false"
                 android:scrollbarAlwaysDrawHorizontalTrack="false"
                 android:scrollbarAlwaysDrawVerticalTrack="false"
                 android:scrollbarSize="0dp"
@@ -53,7 +104,8 @@
                     android:layout_marginRight="0dp"
                     android:layout_marginBottom="0dp"
                     android:background="@android:color/darker_gray"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="1">
 
                     <Button
                         android:id="@+id/button4"
@@ -65,8 +117,9 @@
                         android:layout_marginTop="0dp"
                         android:layout_marginEnd="0dp"
                         android:layout_marginRight="0dp"
+                        android:layout_weight=".2"
                         android:background="@android:color/darker_gray"
-                        android:minWidth="100dp"
+                        android:minWidth="125dp"
                         android:onClick="changeTire"
                         android:text="TIRES"
                         android:textColor="@android:color/background_dark" />
@@ -79,7 +132,8 @@
                         android:layout_marginLeft="0dp"
                         android:layout_marginTop="0dp"
                         android:layout_marginRight="0dp"
-                        android:minWidth="100dp"
+                        android:layout_weight=".2"
+                        android:minWidth="125dp"
                         android:onClick="changePaint"
                         android:text="Change Color"
                         android:textColor="@android:color/black" />
@@ -92,7 +146,8 @@
                         android:layout_marginLeft="0dp"
                         android:layout_marginTop="0dp"
                         android:layout_marginRight="0dp"
-                        android:minWidth="100dp"
+                        android:layout_weight=".2"
+                        android:minWidth="125dp"
                         android:text="SHOCKS"
                         android:textColor="@android:color/black" />
 
@@ -104,7 +159,8 @@
                         android:layout_marginLeft="0dp"
                         android:layout_marginTop="0dp"
                         android:layout_marginRight="0dp"
-                        android:minWidth="100dp"
+                        android:layout_weight=".2"
+                        android:minWidth="125dp"
                         android:text="LIGHT BARS"
                         android:textColor="@android:color/black" />
 
@@ -116,12 +172,12 @@
                         android:layout_marginLeft="0dp"
                         android:layout_marginTop="0dp"
                         android:layout_marginRight="0dp"
-                        android:minWidth="100dp"
+                        android:layout_weight=".2"
+                        android:minWidth="125dp"
                         android:text="Button"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
             </HorizontalScrollView>
-
             <ScrollView
                 android:id="@+id/partsList"
                 android:layout_width="match_parent"
@@ -142,18 +198,40 @@
         </RelativeLayout>
 
         <ScrollView
+            android:id="@+id/scrollCart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/imageView5"
             android:layout_toEndOf="@id/menu"
-            android:layout_toRightOf="@id/menu">
+            android:layout_toRightOf="@id/menu"
+            android:layout_above="@id/button2">
 
             <LinearLayout
                 android:id="@+id/shoppingCart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical">
+
+            </LinearLayout>
         </ScrollView>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/menu"
+            android:layout_toRightOf="@id/menu"
+            android:layout_alignParentBottom="true"
+            android:text="Button" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/menu"
+            android:layout_toEndOf="@id/menu"
+            android:layout_alignParentBottom="true"
+            android:background="?android:attr/listDivider" />
 
     </RelativeLayout>
 
