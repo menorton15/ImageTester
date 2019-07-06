@@ -5,6 +5,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.view.Display;
+import android.view.View;
+import android.widget.ImageView;
 
 import org.junit.Test;
 
@@ -41,7 +43,6 @@ public class ExampleUnitTest {
     public boolean isTouchNearBackWheel(int x, int y) {
 
         Point anchorPoint = new Point(485,700);
-
         int tireWidth = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire).getWidth();
         int tireHeight = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire).getHeight();
 

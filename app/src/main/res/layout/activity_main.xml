@@ -14,6 +14,7 @@
             android:id="@+id/imageView5"
             android:layout_width="300dp"
             android:layout_height="150dp"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="16dp"
@@ -24,7 +25,6 @@
             android:layout_marginBottom="16dp"
             android:baselineAlignBottom="false"
             android:scaleType="centerCrop"
-            android:layout_alignParentEnd="true"
             app:srcCompat="@drawable/jeep_body" />
 
         <RelativeLayout
