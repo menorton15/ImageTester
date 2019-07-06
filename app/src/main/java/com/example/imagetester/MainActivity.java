@@ -125,6 +125,8 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
 
         editor.apply();
 
+        Test
+
     }*/
 
     public void createCartList() {
