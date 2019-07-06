@@ -29,6 +29,7 @@ public class ImageFetch implements Runnable{
             Bitmap main = bd.getBitmap();
             main = ImageMerger.mergeImages(main, d, 485, 700);
             main = ImageMerger.mergeImages(main, d, 1650, 700);
+            img.setImageBitmap(main);
         } catch (Exception e) {
             e.printStackTrace();
             Log.i("Database", e.toString());
