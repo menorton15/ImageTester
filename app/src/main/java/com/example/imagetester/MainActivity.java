@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -64,6 +66,24 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         buildRecyclerView();
         calculateTotalPrice();
         setButtons();
+        Display display = getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics ();
+        display.getMetrics(outMetrics);
+
+        float density  = getResources().getDisplayMetrics().density;
+        float dpHeight = outMetrics.heightPixels / density;
+        float dpWidth  = outMetrics.widthPixels / density;
+
+        img = findViewById(R.id.imageView5);
+
+        img.getLayoutParams().height = (int)(dpWidth / 4);
+        img.getLayoutParams().width = (int)(dpWidth / 2);
+
+        if (img.getLayoutParams().height > 150 || img.getLayoutParams().width > 300){
+            img.getLayoutParams().height = 150;
+            img.getLayoutParams().width = 300;
+        }
+        img.requestLayout();
         /*
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         String cartJson = sharedPref.getString("CART", "");
