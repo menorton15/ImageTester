@@ -61,9 +61,12 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
     private Button buttonNextActivity;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        Bitmap smallImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire);
+        Log.i("Database", "W: " + smallImage.getWidth() + " H: " + smallImage.getHeight());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

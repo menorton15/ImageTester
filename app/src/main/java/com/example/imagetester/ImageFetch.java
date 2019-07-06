@@ -24,7 +24,8 @@ public class ImageFetch implements Runnable{
     public void run() {
         try {
             InputStream is = (InputStream) new URL(tireImageUrl).getContent();
-            Bitmap d = BitmapFactory.decodeStream(is);
+            Bitmap d = Bitmap.createScaledBitmap(BitmapFactory.decodeStream(is), 368, 368, false);
+            Log.i("Database", "Width: " + d.getWidth() + " Height: " + d.getHeight());
             BitmapDrawable bd = (BitmapDrawable) img.getDrawable();
             Bitmap main = bd.getBitmap();
             main = ImageMerger.mergeImages(main, d, 485, 700);
