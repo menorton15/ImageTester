@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
     public void createCartList() {
 
         myCartList = new ArrayList<>();
-        myCartList.add(new VehicleAccessory(AccessoryType.TIRES, " ", " ", " ", " ", " ", "0.00", " ", " ", " "));
+        ///myCartList.add(new VehicleAccessory(AccessoryType.TIRES, " ", " ", " ", " ", " ", "0.00", " ", " ", " "));
 
     }
 
