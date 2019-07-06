@@ -482,7 +482,13 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                                         tireAspectRatio + "R" + tireDiameter;
                                 String tireImageUrl = tire.getString("image_url");
                                 Log.i("Database", tireImageUrl);
-                                ImageFetch fetcher = new ImageFetch(tireImageUrl, img);
+
+                                VehicleAccessory part = new VehicleAccessory(AccessoryType.TIRES,
+                                        tirePartNumber, tireName, tireDescription, tireBrand,
+                                        tireManufacturerPartNumber, tirePrice, tireVehicleType,
+                                        tireSpecs, tireImageUrl);
+
+                                ImageFetch fetcher = new ImageFetch(tireImageUrl, img, part);
 
                                 Thread thread = new Thread(fetcher);
 
@@ -500,10 +506,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                                     Log.i("Database", e.toString());
                                 }*/
 
-                                myAccessoryList.add(new VehicleAccessory(AccessoryType.TIRES,
-                                        tirePartNumber, tireName, tireDescription, tireBrand,
-                                        tireManufacturerPartNumber, tirePrice, tireVehicleType,
-                                        tireSpecs, tireImageUrl));
+                                myAccessoryList.add(part);
                             }
 
                             myAccessoryListRecyclerViewAdapter =

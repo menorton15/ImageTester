@@ -15,10 +15,12 @@ public class ImageFetch implements Runnable{
 
     String tireImageUrl;
     ImageView img;
+    VehicleAccessory accessory;
 
-    public ImageFetch(String URL, ImageView view){
+    public ImageFetch(String URL, ImageView view, VehicleAccessory part){
         tireImageUrl = URL;
         img = view;
+        accessory = part;
     }
     @Override
     public void run() {
@@ -31,6 +33,8 @@ public class ImageFetch implements Runnable{
             main = ImageMerger.mergeImages(main, d, 485, 700);
             main = ImageMerger.mergeImages(main, d, 1650, 700);
             img.setImageBitmap(main);
+            accessory.setPartImage(d);
+            Log.i("Image", "Image has been loaded");
         } catch (Exception e) {
             e.printStackTrace();
             Log.i("Database", e.toString());

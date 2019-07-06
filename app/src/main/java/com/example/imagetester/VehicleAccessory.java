@@ -1,5 +1,7 @@
 package com.example.imagetester;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 public class VehicleAccessory implements Serializable {
@@ -14,6 +16,7 @@ public class VehicleAccessory implements Serializable {
     private String vehicleTypeThatPartFits;
     private String partSpecs;
     private String partImageURL;
+    private Bitmap partImage;
 
 
 
@@ -43,10 +46,15 @@ public class VehicleAccessory implements Serializable {
         this.vehicleTypeThatPartFits = vehicleTypeThatPartFits;
         this.partSpecs = partSpecs;
         this.partImageURL = partImageURL;
+        partImage = null;
     }
 
     public void setInternalPartNumber(String internalPartNumber) {
         this.internalPartNumber = internalPartNumber;
+    }
+
+    public void setPartImage(Bitmap partImage){
+        this.partImage = partImage;
     }
 
     public String getPartName() {
@@ -63,6 +71,10 @@ public class VehicleAccessory implements Serializable {
 
     public void setPartDescription(String partDescription) {
         this.partDescription = partDescription;
+    }
+
+    public Bitmap getPartImage() {
+        return this.partImage;
     }
 
     public String getPartBrand() {

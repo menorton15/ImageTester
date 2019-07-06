@@ -98,13 +98,7 @@ public class AccessoryListRecyclerViewAdapter extends RecyclerView.Adapter<Acces
         String vehicleType = currentPart.getVehicleTypeThatPartFits();
         String partSpecs = currentPart.getPartSpecs();
         String imageURL = currentPart.getPartImageURL();
-        try {
-            InputStream is = (InputStream) new URL(imageURL).getContent();
-            Bitmap d = BitmapFactory.decodeStream(is);
-            holder.myImageViewAccessoryView.setImageBitmap(d);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Bitmap partImage = currentPart.getPartImage();
 
         holder.myTextViewAccessoryPartNumber.setText(partNumber);
         holder.myTextViewAccessoryName.setText(partName);
@@ -114,6 +108,7 @@ public class AccessoryListRecyclerViewAdapter extends RecyclerView.Adapter<Acces
         holder.myTextViewAccessoryPrice.setText("$ " + partPrice);
         holder.myTextViewVehicleType.setText("This will fit an " + vehicleType);
         holder.myTextViewSpecs.setText(partSpecs);
+        holder.myImageViewAccessoryView.setImageBitmap(partImage);
 
         //Picasso.get().load(imageURL).fit().centerInside().into(holder.myImageViewAccessoryView);
     }
