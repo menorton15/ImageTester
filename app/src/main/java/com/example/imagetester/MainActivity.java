@@ -478,6 +478,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                                 String tireSpecs = "Tire Size: " + tireCrossSection + "/" +
                                         tireAspectRatio + "R" + tireDiameter;
                                 String tireImageUrl = tire.getString("image_url");
+                                Log.i("Database", tireImageUrl);
                                 ImageFetch fetcher = new ImageFetch(tireImageUrl, img);
 
                                 Thread thread = new Thread(fetcher);

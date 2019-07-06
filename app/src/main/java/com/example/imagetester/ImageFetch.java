@@ -29,10 +29,6 @@ public class ImageFetch implements Runnable{
             Bitmap main = bd.getBitmap();
             main = ImageMerger.mergeImages(main, d, 485, 700);
             main = ImageMerger.mergeImages(main, d, 1650, 700);
-        } catch (NetworkOnMainThreadException e) {
-
-            String message = e.getMessage();
-            Log.i("Database", message);
         } catch (Exception e) {
             e.printStackTrace();
             Log.i("Database", e.toString());
