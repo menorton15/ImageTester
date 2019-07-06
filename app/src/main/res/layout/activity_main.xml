@@ -234,6 +234,7 @@
             android:layout_alignParentBottom="true"
             android:layout_toEndOf="@id/menu"
             android:layout_toRightOf="@id/menu"
+            android:onClick="open"
             android:text="@string/submit_button" />
 
         <View
