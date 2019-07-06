@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
@@ -477,8 +478,13 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                                 String tireSpecs = "Tire Size: " + tireCrossSection + "/" +
                                         tireAspectRatio + "R" + tireDiameter;
                                 String tireImageUrl = tire.getString("image_url");
+                                ImageFetch fetcher = new ImageFetch(tireImageUrl, img);
 
-                                try {
+                                Thread thread = new Thread(fetcher);
+
+                                thread.start();
+
+                                /**try {
                                     InputStream is = (InputStream) new URL(tireImageUrl).getContent();
                                     Bitmap d = BitmapFactory.decodeStream(is);
                                     BitmapDrawable bd = (BitmapDrawable) img.getDrawable();
@@ -487,7 +493,8 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                                     main = ImageMerger.mergeImages(main, d, 1650, 700);
                                 } catch (Exception e) {
                                     e.printStackTrace();
-                                }
+                                    Log.i("Database", e.toString());
+                                }*/
 
                                 myAccessoryList.add(new VehicleAccessory(AccessoryType.TIRES,
                                         tirePartNumber, tireName, tireDescription, tireBrand,
