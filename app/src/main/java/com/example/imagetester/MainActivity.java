@@ -5,6 +5,9 @@ import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,7 +32,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.InputStream;
 import java.io.Serializable;
+import java.net.URL;
 import java.util.ArrayList;
 
 import static java.lang.Float.valueOf;
@@ -469,10 +474,20 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                                         tire.getString("part_number");
                                 String tirePrice = tire.getString("price");
                                 String tireVehicleType = tire.getString("type");
-                                //String tireImageUrl = tire.getString("image_URL");
                                 String tireSpecs = "Tire Size: " + tireCrossSection + "/" +
                                         tireAspectRatio + "R" + tireDiameter;
                                 String tireImageUrl = tire.getString("image_url");
+
+                                try {
+                                    InputStream is = (InputStream) new URL(tireImageUrl).getContent();
+                                    Bitmap d = BitmapFactory.decodeStream(is);
+                                    BitmapDrawable bd = (BitmapDrawable) img.getDrawable();
+                                    Bitmap main = bd.getBitmap();
+                                    main = ImageMerger.mergeImages(main, d, 485, 700);
+                                    main = ImageMerger.mergeImages(main, d, 1650, 700);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
 
                                 myAccessoryList.add(new VehicleAccessory(AccessoryType.TIRES,
                                         tirePartNumber, tireName, tireDescription, tireBrand,

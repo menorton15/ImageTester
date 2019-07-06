@@ -8,12 +8,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="55dp"
+        tools:layout_editor_absoluteY="-58dp">
 
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="300dp"
             android:layout_height="150dp"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="16dp"
@@ -24,7 +27,6 @@
             android:layout_marginBottom="16dp"
             android:baselineAlignBottom="false"
             android:scaleType="centerCrop"
-            android:layout_alignParentEnd="true"
             app:srcCompat="@drawable/jeep_body" />
 
         <RelativeLayout
@@ -178,6 +180,7 @@
                         android:textColor="@android:color/black" />
                 </LinearLayout>
             </HorizontalScrollView>
+
             <ScrollView
                 android:id="@+id/partsList"
                 android:layout_width="match_parent"
@@ -201,10 +204,10 @@
             android:id="@+id/scrollCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@id/button2"
             android:layout_below="@id/imageView5"
             android:layout_toEndOf="@id/menu"
-            android:layout_toRightOf="@id/menu"
-            android:layout_above="@id/button2">
+            android:layout_toRightOf="@id/menu">
 
             <LinearLayout
                 android:id="@+id/shoppingCart"
@@ -219,18 +222,18 @@
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_toEndOf="@id/menu"
             android:layout_toRightOf="@id/menu"
-            android:layout_alignParentBottom="true"
             android:text="Button" />
 
         <View
             android:id="@+id/divider"
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@id/menu"
-            android:layout_toEndOf="@id/menu"
             android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@id/menu"
+            android:layout_toRightOf="@id/menu"
             android:background="?android:attr/listDivider" />
 
     </RelativeLayout>
