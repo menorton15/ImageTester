@@ -477,17 +477,8 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                                 String tireSpecs = "Tire Size: " + tireCrossSection + "/" +
                                         tireAspectRatio + "R" + tireDiameter;
                                 String tireImageUrl = tire.getString("image_url");
-
-                                try {
-                                    InputStream is = (InputStream) new URL(tireImageUrl).getContent();
-                                    Bitmap d = BitmapFactory.decodeStream(is);
-                                    BitmapDrawable bd = (BitmapDrawable) img.getDrawable();
-                                    Bitmap main = bd.getBitmap();
-                                    main = ImageMerger.mergeImages(main, d, 485, 700);
-                                    main = ImageMerger.mergeImages(main, d, 1650, 700);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                                ImageFetch fetcher = new ImageFetch(tireImageUrl, img);
+                                fetcher.run();
 
                                 myAccessoryList.add(new VehicleAccessory(AccessoryType.TIRES,
                                         tirePartNumber, tireName, tireDescription, tireBrand,
