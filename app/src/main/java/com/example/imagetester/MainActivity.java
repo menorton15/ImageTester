@@ -472,7 +472,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                                 //String tireImageUrl = tire.getString("image_URL");
                                 String tireSpecs = "Tire Size: " + tireCrossSection + "/" +
                                         tireAspectRatio + "R" + tireDiameter;
-                                String tireImageUrl = " ";
+                                String tireImageUrl = tire.getString("image_url");
 
                                 myAccessoryList.add(new VehicleAccessory(AccessoryType.TIRES,
                                         tirePartNumber, tireName, tireDescription, tireBrand,
