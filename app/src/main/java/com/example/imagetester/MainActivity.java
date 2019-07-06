@@ -1,6 +1,7 @@
 package com.example.imagetester;
 
 
+import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
@@ -256,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
     }
 
 
-    public void openSendEmailActivity() {
+    public void openSendEmailActivity(View v) {
         Intent intent = new Intent(this, SendEmailActivity.class);
         intent.putExtra("LIST", (Serializable) myCartList);
         startActivity(intent);
@@ -506,6 +507,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         switch (v.getId()) {
             case R.id.button2:
                 Toast.makeText(this, "This will send your list to email", Toast.LENGTH_SHORT).show();
+                openSendEmailActivity(v);
                 break;
             case R.id.button4:
                 Toast.makeText(this, "Tires List", Toast.LENGTH_SHORT).show();
@@ -522,4 +524,5 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         }
 
     }
+
 }
