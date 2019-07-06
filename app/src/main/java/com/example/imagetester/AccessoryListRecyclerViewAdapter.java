@@ -1,14 +1,20 @@
 package com.example.imagetester;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class AccessoryListRecyclerViewAdapter extends RecyclerView.Adapter<AccessoryListRecyclerViewAdapter.AccessoryListViewHolder> {
@@ -92,6 +98,13 @@ public class AccessoryListRecyclerViewAdapter extends RecyclerView.Adapter<Acces
         String vehicleType = currentPart.getVehicleTypeThatPartFits();
         String partSpecs = currentPart.getPartSpecs();
         String imageURL = currentPart.getPartImageURL();
+        try {
+            InputStream is = (InputStream) new URL(imageURL).getContent();
+            Bitmap d = BitmapFactory.decodeStream(is);
+            holder.myImageViewAccessoryView.setImageBitmap(d);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         holder.myTextViewAccessoryPartNumber.setText(partNumber);
         holder.myTextViewAccessoryName.setText(partName);

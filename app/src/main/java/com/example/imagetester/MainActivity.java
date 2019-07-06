@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +33,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URL;
@@ -477,6 +479,8 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                                 String tireSpecs = "Tire Size: " + tireCrossSection + "/" +
                                         tireAspectRatio + "R" + tireDiameter;
                                 String tireImageUrl = tire.getString("image_url");
+                                Log.i("Database", tireImageUrl);
+
 
                                 try {
                                     InputStream is = (InputStream) new URL(tireImageUrl).getContent();
@@ -485,8 +489,10 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                                     Bitmap main = bd.getBitmap();
                                     main = ImageMerger.mergeImages(main, d, 485, 700);
                                     main = ImageMerger.mergeImages(main, d, 1650, 700);
-                                } catch (Exception e) {
+                                    img.setImageBitmap(main);
+                                } catch (IOException e) {
                                     e.printStackTrace();
+                                    Log.i("Database", e.getMessage());
                                 }
 
                                 myAccessoryList.add(new VehicleAccessory(AccessoryType.TIRES,
