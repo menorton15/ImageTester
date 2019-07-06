@@ -1,6 +1,5 @@
 package com.example.imagetester;
 
-
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
