@@ -456,6 +456,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
 
     private void parseJSONTire() {
         String url = "https://openrpg.org/api/tires/read.php";
+        final Activity a = this;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -488,11 +489,10 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                                         tireManufacturerPartNumber, tirePrice, tireVehicleType,
                                         tireSpecs, tireImageUrl);
 
-                                ImageFetch fetcher = new ImageFetch(tireImageUrl, img, part);
 
-                                Thread thread = new Thread(fetcher);
+                                //Thread thread = new Thread(fetcher);
 
-                                thread.start();
+                                //thread.start();
 
                                 /**try {
                                     InputStream is = (InputStream) new URL(tireImageUrl).getContent();
@@ -509,11 +509,15 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                                 myAccessoryList.add(part);
                             }
 
-                            myAccessoryListRecyclerViewAdapter =
+                            ImageFetch fetcher = new ImageFetch(a, myAccessoryListRecyclerViewAdapter, myAccessoryListRecyclerView, this);
+
+                            fetcher.execute( myAccessoryList.toArray(new VehicleAccessory[myAccessoryList.size()]));
+
+                           /* myAccessoryListRecyclerViewAdapter =
                                     new AccessoryListRecyclerViewAdapter(MainActivity.this,
                                             myAccessoryList);
                             myAccessoryListRecyclerView.setAdapter(myAccessoryListRecyclerViewAdapter);
-                            myAccessoryListRecyclerViewAdapter.setOnItemClickListener(MainActivity.this);
+                            myAccessoryListRecyclerViewAdapter.setOnItemClickListener(MainActivity.this);*/
 
                         } catch (JSONException e) {
                             e.printStackTrace();
