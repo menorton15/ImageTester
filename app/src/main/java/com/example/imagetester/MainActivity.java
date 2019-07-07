@@ -301,7 +301,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONArray jsonArray = response.getJSONArray("light_bars");
+                            JSONArray jsonArray = response.getJSONArray("wheels");
 
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject wheel = jsonArray.getJSONObject(i);
@@ -486,6 +486,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         switch (v.getId()) {
             case R.id.button2:
                 Toast.makeText(this, "This will send your list to email", Toast.LENGTH_SHORT).show();
+                //openSendEmailActivity();
                 break;
             case R.id.button4:
                 Toast.makeText(this, "Tires List", Toast.LENGTH_SHORT).show();
