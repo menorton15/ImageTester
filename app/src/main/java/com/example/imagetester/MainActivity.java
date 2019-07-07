@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
     private ArrayList<VehicleAccessory> myAccessoryList;
 
     private TextView totalPriceTextView;
-
     private Button buttonNextActivity;
 
 
@@ -65,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        totalPriceTextView = findViewById(R.id.totalPrice);
+        myCartList = new ArrayList<VehicleAccessory>();
         Bitmap smallImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire);
         Log.i("Database", "W: " + smallImage.getWidth() + " H: " + smallImage.getHeight());
         super.onCreate(savedInstanceState);
@@ -233,6 +234,8 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         for (int i = 0; i < myCartList.size(); i++) {
             total += valueOf(myCartList.get(i).getPartPrice());
         }
+
+
         totalPriceTextView = findViewById(R.id.totalPrice);
         totalPriceTextView.setText("Total: $ " + String.format("%.2f", total));
     }
@@ -509,7 +512,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                                 myAccessoryList.add(part);
                             }
 
-                            ImageFetch fetcher = new ImageFetch(a, myAccessoryListRecyclerViewAdapter, myAccessoryListRecyclerView, this);
+                            ImageFetch fetcher = new ImageFetch(a, myCartListAdapter, myAccessoryListRecyclerViewAdapter, myAccessoryListRecyclerView, myCartList, totalPriceTextView, img);
 
                             fetcher.execute( myAccessoryList.toArray(new VehicleAccessory[myAccessoryList.size()]));
 
