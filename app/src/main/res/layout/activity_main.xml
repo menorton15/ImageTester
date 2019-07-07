@@ -24,6 +24,10 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:baselineAlignBottom="false"
+            android:maxWidth="300dp"
+            android:maxHeight="150dp"
+            android:minWidth="150dp"
+            android:minHeight="75dp"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/jeep_body" />
 
