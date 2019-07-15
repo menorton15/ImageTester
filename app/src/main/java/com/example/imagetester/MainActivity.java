@@ -43,6 +43,8 @@ import static java.lang.Float.valueOf;
 
 public class MainActivity extends AppCompatActivity implements AccessoryListRecyclerViewAdapter.OnItemClickListener, View.OnClickListener {
 
+    //branch test
+
     ImageView img;
 
     private RecyclerView myRecyclerView;
