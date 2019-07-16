@@ -16,7 +16,7 @@ public class SendEmailActivity extends AppCompatActivity {
     private ArrayList<VehicleAccessory> myCartList;
 
     private RecyclerView myRecyclerView;
-    private CartListRecyclerViewAdapter myAdapter;
+    private EmailListRecyclerViewAdapter myAdapter;
     private RecyclerView.LayoutManager myLayoutManager;
 
     private EditText myEditTextTo;
@@ -66,10 +66,10 @@ public class SendEmailActivity extends AppCompatActivity {
 
     public void buildRecyclerView() {
 
-        myRecyclerView = findViewById(R.id.cartRecyclerView);
+        myRecyclerView = findViewById(R.id.emailRecyclerView);
         myRecyclerView.setHasFixedSize(true);
         myLayoutManager = new LinearLayoutManager(this);
-        myAdapter = new CartListRecyclerViewAdapter(myCartList);
+        myAdapter = new EmailListRecyclerViewAdapter(myCartList);
 
         myRecyclerView.setLayoutManager(myLayoutManager);
         myRecyclerView.setAdapter(myAdapter);
