@@ -13,11 +13,13 @@ import java.lang.ref.WeakReference;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GetLightBarListFromAPI implements Runnable {
 
     public static ListOfLightBars myListOfLightBars;
+    public static LightBars myLightBars;
 
     private WeakReference<Activity> activityWeakReference;
 
@@ -54,10 +56,19 @@ public class GetLightBarListFromAPI implements Runnable {
 
         Gson gson = new Gson();
 
-        myListOfLightBars = gson.fromJson(responseBody, ListOfLightBars.class);
+        //myListOfLightBars = new ListOfLightBars();
 
+        //myListOfLightBars = gson.fromJson(responseBody, ListOfLightBars.class);
+
+        myLightBars = gson.fromJson(responseBody, LightBars.class);
 
         final Activity activity = activityWeakReference.get();
+
+        System.out.println(responseBody);
+
+        //System.out.println(myListOfLightBars.get(0).amp_draw);
+
+        //System.out.println(myLightBars.getPartName());
 
         if(activity != null) {
             activity.runOnUiThread(new Runnable() {
@@ -68,4 +79,6 @@ public class GetLightBarListFromAPI implements Runnable {
             });
         }
     }
+
+
 }

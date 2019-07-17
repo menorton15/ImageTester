@@ -33,6 +33,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URL;
@@ -60,9 +61,9 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
 
     private TextView totalPriceTextView;
     private Button buttonNextActivity;
+    private String clickedAccessoryType;
 
-
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -120,102 +121,40 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         calculateTotalPrice();
         myCartListAdapter.notifyItemInserted(cartPosition);
     }
-    /*
-    protected void onPause() {
 
-
-        Gson gson = new Gson();
-        String cartJson = gson.toJson(myCartObject);
-        String currentVehicleJson = gson.toJson(myVehicleObject);
-
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("CART", cartJson);
-        editor.putString("CURRENT_VEHICLE", currentVehicleJson);
-        editor.putString("CURRENT_TAB", currentTabString);
-
-        editor.apply();
-
-    }*/
 
     public void createCartList() {
 
         myCartList = new ArrayList<>();
-        ///myCartList.add(new VehicleAccessory(AccessoryType.TIRES, " ", " ", " ", " ", " ", "0.00", " ", " ", " "));
-
     }
 
-    private void buildAccessoryListRecyclerViewForTires() {
+
+    private void buildAccessoryListRecyclerView() {
 
         myAccessoryListRecyclerView = findViewById(R.id.accessoryListRecyclerView);
         myAccessoryListRecyclerView.setHasFixedSize(true);
         myAccessoryListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        myAccessoryList = new ArrayList<>();
+       switch(clickedAccessoryType) {
+           case "tires":
+               break;
+           case "light_bars":
+               GetJSONLightBarFromAssets getLightBars = new GetJSONLightBarFromAssets(this);
+               myAccessoryList = getLightBars.getJSONLightBar();
+               break;
+           case "wheels":
+               break;
+           case "shocks":
+               break;
 
-        myRequestQueue = Volley.newRequestQueue(this);
-        parseJSONTire();
-        //parseJSONWheel();
-        //parseJSONLightBar();
-        //parseJSONShocks();
+       }
 
-    }
-    private void buildAccessoryListRecyclerViewForWheels() {
-
-        myAccessoryListRecyclerView = findViewById(R.id.accessoryListRecyclerView);
-        myAccessoryListRecyclerView.setHasFixedSize(true);
-        myAccessoryListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        myAccessoryList = new ArrayList<>();
-
-        myRequestQueue = Volley.newRequestQueue(this);
-        //parseJSONTire();
-        parseJSONWheel();
-        //parseJSONLightBar();
-        //parseJSONShocks();
-
-    }
-    private void buildAccessoryListRecyclerViewForLightBars() {
-
-        myAccessoryListRecyclerView = findViewById(R.id.accessoryListRecyclerView);
-        myAccessoryListRecyclerView.setHasFixedSize(true);
-        myAccessoryListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        /*if(GetLightBarListFromAPI.myListOfLightBars != null) {
-            myAccessoryList = GetLightBarListFromAPI.myListOfLightBars.getList();
-        }
-        */
-        
-        myAccessoryList = new ArrayList<>();
-
-        myRequestQueue = Volley.newRequestQueue(this);
-        //parseJSONTire();
-        //parseJSONWheel();
-        //parseJSONLightBar();
-        //parseJSONShocks();
-
-    }
-    private void buildAccessoryListRecyclerViewForShocks() {
-
-        myAccessoryListRecyclerView = findViewById(R.id.accessoryListRecyclerView);
-        myAccessoryListRecyclerView.setHasFixedSize(true);
-        myAccessoryListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        myAccessoryList = new ArrayList<>();
-
-        myRequestQueue = Volley.newRequestQueue(this);
-        //parseJSONTire();
-        //parseJSONWheel();
-        //parseJSONLightBar();
-        //parseJSONShocks();
+        myAccessoryListRecyclerViewAdapter = new AccessoryListRecyclerViewAdapter(this, myAccessoryList);
+        myAccessoryListRecyclerView.setAdapter(myAccessoryListRecyclerViewAdapter);
+        myAccessoryListRecyclerViewAdapter.setOnItemClickListener(this);
 
     }
 
-    public void getLightBarList() {
-        GetLightBarListFromAPI getLightBarListFromAPI = new GetLightBarListFromAPI(this);
-        Thread thread1 = new Thread(getLightBarListFromAPI);
-        thread1.start();
-    }
 
     public void buildRecyclerView() {
 
@@ -248,7 +187,6 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
             total += valueOf(myCartList.get(i).getPartPrice());
         }
 
-
         totalPriceTextView = findViewById(R.id.totalPrice);
         totalPriceTextView.setText("Total: $ " + String.format("%.2f", total));
     }
@@ -264,15 +202,6 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         buttonWheels.setOnClickListener(this);
         buttonLightBars.setOnClickListener(this);
         buttonNextActivity.setOnClickListener(this);
-
-
-        /*buttonNextActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openSendEmailActivity();
-            }
-        });
-        */
     }
 
     public void removeItem(int position) {
@@ -280,273 +209,10 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         myCartListAdapter.notifyItemRemoved(position);
     }
 
-
     public void openSendEmailActivity(View v) {
         Intent intent = new Intent(this, SendEmailActivity.class);
         intent.putExtra("LIST", (Serializable) myCartList);
         startActivity(intent);
-    }
-
-    private void parseJSONShocks() {
-        String url = "https://openrpg.org/api/shocks/read.php";
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("shocks");
-
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject shocks = jsonArray.getJSONObject(i);
-
-                                String shocksPartNumber = shocks.getString("id");
-                                String shocksName = shocks.getString("name");
-                                String shocksDescription = shocks.getString("description");
-                                String shocksBrand = shocks.getString("brand");
-                                String shocksManufacturerPartNumber =
-                                        shocks.getString("part_number");
-                                String shocksPrice = shocks.getString("price");
-                                String shocksVehicleType = shocks.getString("type");
-                                //String shocksImageUrl = shocks.getString("image_URL");
-                                String shocksSpecs = "Shocks Specs: ";
-                                String shocksImageUrl = " ";
-
-                                myAccessoryList.add(new VehicleAccessory(AccessoryType.SHOCKS,
-                                        shocksPartNumber, shocksName, shocksDescription, shocksBrand,
-                                        shocksManufacturerPartNumber, shocksPrice, shocksVehicleType,
-                                        shocksSpecs, shocksImageUrl));
-                            }
-
-                            myAccessoryListRecyclerViewAdapter =
-                                    new AccessoryListRecyclerViewAdapter(MainActivity.this,
-                                            myAccessoryList);
-                            myAccessoryListRecyclerView.setAdapter(myAccessoryListRecyclerViewAdapter);
-                            myAccessoryListRecyclerViewAdapter.setOnItemClickListener(MainActivity.this);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-
-        myRequestQueue.add(request);
-    }
-
-    private void parseJSONWheel() {
-        String url = "https://openrpg.org/api/wheels/read.php";
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("light_bars");
-
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject wheel = jsonArray.getJSONObject(i);
-
-                                String wheelPartNumber = wheel.getString("id");
-                                String wheelName = wheel.getString("name");
-                                String wheelDescription = wheel.getString("description");
-                                String wheelBoltCircle = wheel.getString("bolt_circle");
-                                String wheelBoltDiameter = wheel.getString("bolt_diameter");
-                                String wheelBackSpacing = wheel.getString("back_spacing");
-                                String wheelFrontSpacing = wheel.getString("front_spacing");
-                                String wheelNegativeOffset = wheel.getString("negative_offset");
-                                String wheelPositiveOffset = wheel.getString("positive_offset");
-                                String wheelDiameter = wheel.getString("diameter");
-                                String wheelBrand = wheel.getString("brand");
-                                String wheelManufacturerPartNumber =
-                                        wheel.getString("part_number");
-                                String wheelPrice = wheel.getString("price");
-                                //String wheelVehicleType = wheel.getString("type");
-                                //String wheelImageUrl = wheel.getString("image_URL");
-                                String wheelSpecs = "Wheel specs: " +
-                                        "\n Bolt Circle: " + wheelBoltCircle +
-                                        "\n Bolt Diameter: " + wheelBoltDiameter +
-                                        "\n Back Spacing: " + wheelBackSpacing +
-                                        "\n Front Spacing: " + wheelFrontSpacing +
-                                        "\n Negative Offset: " + wheelNegativeOffset +
-                                        "\n Positive Offset: " + wheelPositiveOffset +
-                                        "\n Wheel Diameter: " + wheelDiameter;
-                                String wheelVehicleType = "SUV";
-                                String wheelImageUrl = " ";
-
-                                myAccessoryList.add(new VehicleAccessory(AccessoryType.WHEEL,
-                                        wheelPartNumber, wheelName, wheelDescription, wheelBrand,
-                                        wheelManufacturerPartNumber, wheelPrice, wheelVehicleType,
-                                        wheelSpecs, wheelImageUrl));
-                            }
-
-                            myAccessoryListRecyclerViewAdapter =
-                                    new AccessoryListRecyclerViewAdapter(MainActivity.this,
-                                            myAccessoryList);
-                            myAccessoryListRecyclerView.setAdapter(myAccessoryListRecyclerViewAdapter);
-                            myAccessoryListRecyclerViewAdapter.setOnItemClickListener(MainActivity.this);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-
-        myRequestQueue.add(request);
-    }
-
-
-    private void parseJSONLightBar() {
-        String url = "https://openrpg.org/api/light-bars/read.php";
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("light_bars");
-
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject lightBar = jsonArray.getJSONObject(i);
-
-                                String lightBarPartNumber = lightBar.getString("id");
-                                String lightBarName = lightBar.getString("name");
-                                String lightBarDescription = lightBar.getString("description");
-                                String lightBarPattern = lightBar.getString("pattern");
-                                String lightBarWeight = lightBar.getString("weight");
-                                String lightBarOutputWatts = lightBar.getString("output_watts");
-                                String lightBarAmpDraw = lightBar.getString("amp_draw");
-                                String lightBarLEDs = lightBar.getString("leds");
-                                String lightBarLumens = lightBar.getString("lumens");
-                                String lightBarBrand = lightBar.getString("brand");
-                                String lightBarManufacturerPartNumber =
-                                        lightBar.getString("part_number");
-                                String lightBarPrice = lightBar.getString("price");
-                                //String lightBarVehicleType = lightBar.getString("type");
-                                //String lightBarImageUrl = lightBar.getString("image_URL");
-                                String lightBarSpecs = "Light Bar Specs: " +
-                                        "\n Pattern: " + lightBarPattern +
-                                        "\n Weight: " + lightBarWeight +
-                                        "\n Output Watts: " +lightBarOutputWatts +
-                                        "\n Amp Draw: " + lightBarAmpDraw +
-                                        "\n LEDs: " + lightBarLEDs +
-                                        "\n Lumens: " + lightBarLumens;
-                                String lightBarVehicleType = "SUV";
-                                String lightBarImageUrl = " ";
-
-                                myAccessoryList.add(new VehicleAccessory(AccessoryType.LIGHTBAR,
-                                        lightBarPartNumber, lightBarName, lightBarDescription, lightBarBrand,
-                                        lightBarManufacturerPartNumber, lightBarPrice, lightBarVehicleType,
-                                        lightBarSpecs, lightBarImageUrl));
-                            }
-
-                            myAccessoryListRecyclerViewAdapter =
-                                    new AccessoryListRecyclerViewAdapter(MainActivity.this,
-                                            myAccessoryList);
-                            myAccessoryListRecyclerView.setAdapter(myAccessoryListRecyclerViewAdapter);
-                            myAccessoryListRecyclerViewAdapter.setOnItemClickListener(MainActivity.this);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-
-        myRequestQueue.add(request);
-    }
-
-
-    private void parseJSONTire() {
-        String url = "https://openrpg.org/api/tires/read.php";
-        final Activity a = this;
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("tires");
-
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject tire = jsonArray.getJSONObject(i);
-
-                                String tirePartNumber = tire.getString("id");
-                                String tireName = tire.getString("name");
-                                String tireDescription = tire.getString("description");
-                                String tireCrossSection = tire.getString("cross_section");
-                                String tireAspectRatio = tire.getString("aspect_ratio");
-                                String tireDiameter = tire.getString("diameter");
-                                String tireBrand = tire.getString("brand");
-                                String tireManufacturerPartNumber =
-                                        tire.getString("part_number");
-                                String tirePrice = tire.getString("price");
-                                String tireVehicleType = tire.getString("type");
-                                String tireSpecs = "Tire Size: " + tireCrossSection + "/" +
-                                        tireAspectRatio + "R" + tireDiameter;
-                                String tireImageUrl = tire.getString("image_url");
-                                Log.i("Database", tireImageUrl);
-
-                                VehicleAccessory part = new VehicleAccessory(AccessoryType.TIRES,
-                                        tirePartNumber, tireName, tireDescription, tireBrand,
-                                        tireManufacturerPartNumber, tirePrice, tireVehicleType,
-                                        tireSpecs, tireImageUrl);
-
-
-                                //Thread thread = new Thread(fetcher);
-
-                                //thread.start();
-
-                                /**try {
-                                    InputStream is = (InputStream) new URL(tireImageUrl).getContent();
-                                    Bitmap d = BitmapFactory.decodeStream(is);
-                                    BitmapDrawable bd = (BitmapDrawable) img.getDrawable();
-                                    Bitmap main = bd.getBitmap();
-                                    main = ImageMerger.mergeImages(main, d, 485, 700);
-                                    main = ImageMerger.mergeImages(main, d, 1650, 700);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                    Log.i("Database", e.toString());
-                                }*/
-
-                                myAccessoryList.add(part);
-                            }
-
-                            ImageFetch fetcher = new ImageFetch(a, myCartListAdapter, myAccessoryListRecyclerViewAdapter, myAccessoryListRecyclerView, myCartList, totalPriceTextView, img);
-
-                            fetcher.execute( myAccessoryList.toArray(new VehicleAccessory[myAccessoryList.size()]));
-
-                           /* myAccessoryListRecyclerViewAdapter =
-                                    new AccessoryListRecyclerViewAdapter(MainActivity.this,
-                                            myAccessoryList);
-                            myAccessoryListRecyclerView.setAdapter(myAccessoryListRecyclerViewAdapter);
-                            myAccessoryListRecyclerViewAdapter.setOnItemClickListener(MainActivity.this);*/
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-
-        myRequestQueue.add(request);
     }
 
 
@@ -559,19 +225,19 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                 break;
             case R.id.button4:
                 Toast.makeText(this, "Tires List", Toast.LENGTH_SHORT).show();
-                buildAccessoryListRecyclerViewForTires();
+                clickedAccessoryType = "tires";
+                buildAccessoryListRecyclerView();
                 break;
             case R.id.button6:
                 Toast.makeText(this, "Wheels List", Toast.LENGTH_SHORT).show();
-                buildAccessoryListRecyclerViewForWheels();
+                clickedAccessoryType = "wheels";
+                buildAccessoryListRecyclerView();
                 break;
             case R.id.button7:
                 Toast.makeText(this, "Light Bars List", Toast.LENGTH_SHORT).show();
-                getLightBarList();
-                buildAccessoryListRecyclerViewForLightBars();
+                clickedAccessoryType = "light_bars";
+                buildAccessoryListRecyclerView();
                 break;
         }
-
     }
-
 }

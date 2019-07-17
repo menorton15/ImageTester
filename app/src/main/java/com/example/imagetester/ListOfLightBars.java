@@ -1,18 +1,11 @@
 package com.example.imagetester;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListOfLightBars {
 
-    public ArrayList<LightBars> getList() {
-        return list;
-    }
-
-    public void setList(ArrayList<LightBars> list) {
-        this.list = list;
-    }
-
-    public ArrayList<LightBars> list;
-
+    ArrayList<LightBars> light_bars;
+    String accessory_type;
 
 }

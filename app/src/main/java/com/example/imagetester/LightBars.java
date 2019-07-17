@@ -1,9 +1,15 @@
 package com.example.imagetester;
 
+import android.widget.Toast;
+
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
-public class LightBars extends VehicleAccessory
-{
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+
+public class LightBars extends VehicleAccessory {
 
     @SerializedName("id")
     String partNumber;
@@ -23,24 +29,72 @@ public class LightBars extends VehicleAccessory
     String vehicleType;
     String image_url;
 
-    String specs = "Light Bar Specs: " +
-        "\n Pattern: " + pattern +
-        "\n Weight: " + weight +
-        "\n Output Watts: " + output_watts +
-        "\n Amp Draw: " + amp_draw +
-        "\n LEDs: " + leds +
-        "\n Lumens: " + lumens;
+    String specs;
 
-    public LightBars(AccessoryType accessoryType, String internalPartNumber, String partName, String partDescription, String partBrand, String manufacturerPartNumber, String partPrice, String vehicleTypeThatPartFits, String partSpecs, String partImageURL, String partNumber, String name, String description, String brand, String manufacturerPartNumber1, String price, String vehicleType, String image_url, String specs) {
-        super(accessoryType, internalPartNumber, partName, partDescription, partBrand, manufacturerPartNumber, partPrice, vehicleTypeThatPartFits, partSpecs, partImageURL);
-        this.partNumber = partNumber;
-        this.name = name;
-        this.description = description;
-        this.brand = brand;
-        this.manufacturerPartNumber = manufacturerPartNumber1;
-        this.price = price;
-        this.vehicleType = vehicleType;
-        this.image_url = image_url;
+    public LightBars(AccessoryType accessoryType, String internalPartNumber, String partName,
+                     String partDescription, String partBrand, String manufacturerPartNumber,
+                     String partPrice, String vehicleTypeThatPartFits, String partSpecs,
+                     String partImageURL) {
+        super(accessoryType, internalPartNumber, partName, partDescription, partBrand,
+                manufacturerPartNumber, partPrice, vehicleTypeThatPartFits, partSpecs, partImageURL);
+
+    }
+
+    public String getSpecs() {
+        specs = "Light Bar Specs: " +
+                "\n Pattern: " + pattern +
+                "\n Weight: " + weight +
+                "\n Output Watts: " + output_watts +
+                "\n Amp Draw: " + amp_draw +
+                "\n LEDs: " + leds +
+                "\n Lumens: " + lumens;
+        return specs;
+    }
+
+    public void setSpecs(String specs) {
         this.specs = specs;
     }
-}
+
+    /*public ArrayList<LightBars> loadJSONLightBarFromAssets() {
+        ArrayList<LightBars> myLightBarList = new ArrayList<>();
+        String json = null;
+
+        try {
+            InputStream inputStream = MainActivity.getAssets();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return myLightBarList;
+        }
+
+        private void getJSONLightBarFromAssets() {
+            String json = null;
+            try {
+                InputStream inputStream = getAssets().open("LightBarJSON.json");
+                int size = inputStream.available();
+                byte[] buffer = new byte[size];
+                inputStream.read(buffer);
+                inputStream.close();
+                json = new String(buffer, "UTF-8");
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //Toast.makeText(this, "Getting light bar info", Toast.LENGTH_SHORT);
+
+            System.out.println(json + "This is from the local folder");
+
+            Gson gson = new Gson();
+            //LightBars myLightBars = gson.fromJson(json, LightBars.class);
+
+            ListOfLightBars myList = gson.fromJson(json, ListOfLightBars.class);
+
+            //System.out.println("this is the amp: " + myLightBars.amp_draw);
+
+            System.out.println("this is the amp: " + myList.get(0).amp_draw);
+        }
+        */
+
+    }

@@ -115,7 +115,16 @@ public class AccessoryListRecyclerViewAdapter extends RecyclerView.Adapter<Acces
 
     @Override
     public int getItemCount() {
-        return myVehicleAccessoryList.size();
+        int count;
+        if(myVehicleAccessoryList == null || myVehicleAccessoryList.isEmpty()){
+            count = 0;
+        }
+
+        else {
+            count = myVehicleAccessoryList.size();
+        }
+
+        return count;
     }
 
 }

@@ -1,0 +1,33 @@
+{"light_bars":[
+  {
+    "id":"1",
+    "name":"test",
+    "description":"test",
+    "brand":"DB LINK",
+    "part_number":"DBSM4S-K",
+    "pattern":"Spot",
+    "weight":"2.0",
+    "output_watts":"26.00",
+    "amp_draw":"24V\/1.096A",
+    "leds":"8",
+    "lumens":"1080",
+    "price":"120.00",
+    "image_url":""
+  },
+  {
+    "id":"2",
+    "name":"test2",
+    "description":"test2",
+    "brand":"DB LINK",
+    "part_number":"DBSM4S-K",
+    "pattern":"Spot",
+    "weight":"2.0",
+    "output_watts":"26.00",
+    "amp_draw":"24V\/1.096A",
+    "leds":"8",
+    "lumens":"1080",
+    "price":"120.00",
+    "image_url":""}],
+
+  "accessory_type":"light_bar"
+}
