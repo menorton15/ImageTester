@@ -181,12 +181,17 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         myAccessoryListRecyclerView.setHasFixedSize(true);
         myAccessoryListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        /*if(GetLightBarListFromAPI.myListOfLightBars != null) {
+            myAccessoryList = GetLightBarListFromAPI.myListOfLightBars.getList();
+        }
+        */
+        
         myAccessoryList = new ArrayList<>();
 
         myRequestQueue = Volley.newRequestQueue(this);
         //parseJSONTire();
         //parseJSONWheel();
-        parseJSONLightBar();
+        //parseJSONLightBar();
         //parseJSONShocks();
 
     }
@@ -204,6 +209,12 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         //parseJSONLightBar();
         //parseJSONShocks();
 
+    }
+
+    public void getLightBarList() {
+        GetLightBarListFromAPI getLightBarListFromAPI = new GetLightBarListFromAPI(this);
+        Thread thread1 = new Thread(getLightBarListFromAPI);
+        thread1.start();
     }
 
     public void buildRecyclerView() {
@@ -556,6 +567,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                 break;
             case R.id.button7:
                 Toast.makeText(this, "Light Bars List", Toast.LENGTH_SHORT).show();
+                getLightBarList();
                 buildAccessoryListRecyclerViewForLightBars();
                 break;
         }
