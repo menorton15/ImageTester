@@ -1,0 +1,38 @@
+{"wheels":[
+  {
+    "id":"1",
+    "name":"Wheel X",
+    "description":"",
+    "brand":"",
+    "part_number":"1",
+    "price":"136.00",
+    "type":"SUV",
+    "image_url":"",
+    "bolt_circle":"",
+    "bolt_diameter":"",
+    "back_spacing":"",
+    "front_spacing":"",
+    "negative_offset":"",
+    "positive_offset":"",
+    "diameter":""
+  },
+  {
+    "id":"2",
+    "name":"Wheel Y",
+    "description":"",
+    "brand":"",
+    "part_number":"1",
+    "price":"132.00",
+    "type":"SUV",
+    "image_url":"",
+    "bolt_circle":"",
+    "bolt_diameter":"",
+    "back_spacing":"",
+    "front_spacing":"",
+    "negative_offset":"",
+    "positive_offset":"",
+    "diameter":""
+  }],
+
+  "accessory_type":"wheel"
+}

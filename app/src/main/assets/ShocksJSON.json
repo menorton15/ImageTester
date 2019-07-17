@@ -1,0 +1,24 @@
+{"shocks":[
+  {
+    "id":"1",
+    "name":"Shock 1",
+    "description":"",
+    "brand":"",
+    "part_number":"1",
+    "price":"136.00",
+    "type":"SUV",
+    "image_url":""
+  },
+  {
+    "id":"2",
+    "name":"Shock 2",
+    "description":"",
+    "brand":"",
+    "part_number":"1",
+    "price":"132.00",
+    "type":"SUV",
+    "image_url":""
+  }],
+
+  "accessory_type":"shocks"
+}

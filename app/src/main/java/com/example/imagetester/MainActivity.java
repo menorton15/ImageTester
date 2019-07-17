@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
     private Button buttonNextActivity;
     private String clickedAccessoryType;
 
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

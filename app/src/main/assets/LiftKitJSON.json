@@ -1,0 +1,24 @@
+{"lift_kits":[
+  {
+    "id":"1",
+    "name":"Lift Kit 1",
+    "description":"",
+    "brand":"",
+    "part_number":"1",
+    "price":"136.00",
+    "type":"SUV",
+    "image_url":""
+  },
+  {
+    "id":"2",
+    "name":"Lift Kit 2",
+    "description":"",
+    "brand":"",
+    "part_number":"1",
+    "price":"132.00",
+    "type":"SUV",
+    "image_url":""
+  }],
+
+  "accessory_type":"lift_kit"
+}
