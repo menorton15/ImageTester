@@ -18,8 +18,8 @@ import java.util.Scanner;
 
 public class GetLightBarListFromAPI implements Runnable {
 
-    public static ListOfLightBars myListOfLightBars;
     public static LightBars myLightBars;
+    public static LightBarItem myLightBarItem;
 
     private WeakReference<Activity> activityWeakReference;
 
@@ -56,17 +56,19 @@ public class GetLightBarListFromAPI implements Runnable {
 
         Gson gson = new Gson();
 
-        //myListOfLightBars = new ListOfLightBars();
+        //myLightBars = new LightBars();
 
-        //myListOfLightBars = gson.fromJson(responseBody, ListOfLightBars.class);
+        //myLightBars = gson.fromJson(responseBody, LightBars.class);
 
         myLightBars = gson.fromJson(responseBody, LightBars.class);
+
+        myLightBarItem = gson.fromJson(responseBody, LightBarItem.class);
 
         final Activity activity = activityWeakReference.get();
 
         System.out.println(responseBody);
 
-        //System.out.println(myListOfLightBars.get(0).amp_draw);
+        //System.out.println(myLightBars.get(0).amp_draw);
 
         //System.out.println(myLightBars.getPartName());
 

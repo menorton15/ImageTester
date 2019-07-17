@@ -37,7 +37,7 @@ public class GetJSONLightBarFromAssets {
         Gson gson = new Gson();
         //LightBars myLightBars = gson.fromJson(json, LightBars.class);
 
-        ListOfLightBars myList = gson.fromJson(json, ListOfLightBars.class);
+        LightBars myList = gson.fromJson(json, LightBars.class);
 
         //System.out.println("this is the amp: " + myLightBars.amp_draw);
 

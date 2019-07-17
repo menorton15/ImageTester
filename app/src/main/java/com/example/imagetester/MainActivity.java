@@ -137,12 +137,16 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
 
        switch(clickedAccessoryType) {
            case "tires":
+               GetJSONTiresFromAssets getTires = new GetJSONTiresFromAssets(this);
+               myAccessoryList = getTires.getJSONTires();
                break;
            case "light_bars":
                GetJSONLightBarFromAssets getLightBars = new GetJSONLightBarFromAssets(this);
                myAccessoryList = getLightBars.getJSONLightBar();
                break;
            case "wheels":
+               //GetJSONWheelsFromAssets getWheels = new GetJSONWheelsFromAssets(this);
+               //myAccessoryList = getWheels new GetJSONWheelsFromAssets().getJSONWheels();
                break;
            case "shocks":
                break;
