@@ -1,13 +1,8 @@
 package com.example.imagetester;
 
-import android.app.Activity;
-import android.app.DownloadManager;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,22 +16,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.ArrayList;
 
 import static java.lang.Float.valueOf;
@@ -145,10 +127,16 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                myAccessoryList = getLightBars.getJSONLightBar();
                break;
            case "wheels":
-               //GetJSONWheelsFromAssets getWheels = new GetJSONWheelsFromAssets(this);
-               //myAccessoryList = getWheels new GetJSONWheelsFromAssets().getJSONWheels();
+               GetJSONWheelsFromAssets getWheels = new GetJSONWheelsFromAssets(this);
+               myAccessoryList = getWheels.getJSONWheels();
                break;
            case "shocks":
+               GetJSONShocksFromAssets getShocks = new GetJSONShocksFromAssets(this);
+               myAccessoryList = getShocks.getJSONShocks();
+               break;
+           case "lift_kits":
+               GetJSONLiftKitsFromAssets getLiftKits = new GetJSONLiftKitsFromAssets(this);
+               myAccessoryList = getLiftKits.getJSONLiftKits();
                break;
 
        }
@@ -197,15 +185,19 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
 
     public void setButtons() {
 
-        buttonNextActivity = findViewById(R.id.button2);
-        Button buttonTires = findViewById(R.id.button4);
-        Button buttonWheels = findViewById(R.id.button6);
-        Button buttonLightBars = findViewById(R.id.button7);
+        buttonNextActivity = findViewById(R.id.button_send_to_email);
+        Button buttonTires = findViewById(R.id.button_tires);
+        Button buttonWheels = findViewById(R.id.button_wheels);
+        Button buttonLightBars = findViewById(R.id.button_light_bars);
+        Button buttonShocks = findViewById(R.id.button_shocks);
+        Button buttonLiftKits = findViewById(R.id.button_lift_kits);
 
         buttonTires.setOnClickListener(this);
         buttonWheels.setOnClickListener(this);
         buttonLightBars.setOnClickListener(this);
         buttonNextActivity.setOnClickListener(this);
+        buttonShocks.setOnClickListener(this);
+        buttonLiftKits.setOnClickListener(this);
     }
 
     public void removeItem(int position) {
@@ -223,23 +215,33 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.button2:
+            case R.id.button_send_to_email:
                 Toast.makeText(this, "This will send your list to email", Toast.LENGTH_SHORT).show();
                 openSendEmailActivity(v);
                 break;
-            case R.id.button4:
+            case R.id.button_tires:
                 Toast.makeText(this, "Tires List", Toast.LENGTH_SHORT).show();
                 clickedAccessoryType = "tires";
                 buildAccessoryListRecyclerView();
                 break;
-            case R.id.button6:
+            case R.id.button_wheels:
                 Toast.makeText(this, "Wheels List", Toast.LENGTH_SHORT).show();
                 clickedAccessoryType = "wheels";
                 buildAccessoryListRecyclerView();
                 break;
-            case R.id.button7:
+            case R.id.button_light_bars:
                 Toast.makeText(this, "Light Bars List", Toast.LENGTH_SHORT).show();
                 clickedAccessoryType = "light_bars";
+                buildAccessoryListRecyclerView();
+                break;
+            case R.id.button_shocks:
+                Toast.makeText(this, "Shocks List", Toast.LENGTH_SHORT).show();
+                clickedAccessoryType = "shocks";
+                buildAccessoryListRecyclerView();
+                break;
+            case R.id.button_lift_kits:
+                Toast.makeText(this, "Lift Kits List", Toast.LENGTH_SHORT).show();
+                clickedAccessoryType = "lift_kits";
                 buildAccessoryListRecyclerView();
                 break;
         }

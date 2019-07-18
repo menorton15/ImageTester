@@ -17,4 +17,5 @@
     <string name="email_subject">Subject:</string>
     <string name="email_message">Message:</string>
     <string name="manufacturer_name">Manufacturer name</string>
+    <string name="send_to_email">Send List to Email</string>
 </resources>

@@ -112,7 +112,7 @@
                     android:weightSum="1">
 
                     <Button
-                        android:id="@+id/button4"
+                        android:id="@+id/button_tires"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -129,21 +129,7 @@
                         android:textColor="@android:color/background_dark" />
 
                     <Button
-                        android:id="@+id/button5"
-                        style="?android:attr/buttonBarButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="0dp"
-                        android:layout_marginRight="0dp"
-                        android:layout_weight=".2"
-                        android:minWidth="125dp"
-                        android:onClick="changePaint"
-                        android:text="Change Color"
-                        android:textColor="@android:color/black" />
-
-                    <Button
-                        android:id="@+id/button6"
+                        android:id="@+id/button_wheels"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -156,7 +142,7 @@
                         android:textColor="@android:color/black" />
 
                     <Button
-                        android:id="@+id/button7"
+                        android:id="@+id/button_light_bars"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -169,7 +155,7 @@
                         android:textColor="@android:color/black" />
 
                     <Button
-                        android:id="@+id/button8"
+                        android:id="@+id/button_shocks"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -178,7 +164,34 @@
                         android:layout_marginRight="0dp"
                         android:layout_weight=".2"
                         android:minWidth="125dp"
-                        android:text="Button"
+                        android:text="SHOCKS"
+                        android:textColor="@android:color/black" />
+
+                    <Button
+                        android:id="@+id/button_lift_kits"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginRight="0dp"
+                        android:layout_weight=".2"
+                        android:minWidth="125dp"
+                        android:text="LIFT KITS"
+                        android:textColor="@android:color/black" />
+
+                    <Button
+                        android:id="@+id/button_change_color"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginRight="0dp"
+                        android:layout_weight=".2"
+                        android:minWidth="125dp"
+                        android:onClick="changePaint"
+                        android:text="Change Color"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
             </HorizontalScrollView>
@@ -210,7 +223,7 @@
             android:layout_below="@id/imageView5"
             android:layout_toEndOf="@id/menu"
             android:layout_toRightOf="@id/menu"
-            android:layout_above="@id/button2"
+            android:layout_above="@id/button_send_to_email"
             android:orientation="vertical">
 
             <TextView
@@ -232,14 +245,14 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button_send_to_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_toEndOf="@id/menu"
             android:layout_toRightOf="@id/menu"
-            android:onClick="open"
-            android:text="@string/submit_button" />
+            android:onClick="openSendEmailActivity"
+            android:text="@string/send_to_email" />
 
         <View
             android:id="@+id/divider"

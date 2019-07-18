@@ -1,6 +1,7 @@
 package com.example.imagetester;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -9,6 +10,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class GetJSONTiresFromAssets {
+
+    private static final String TAG = "GetTiresFromAssets";
+
     Context context;
 
     public GetJSONTiresFromAssets(Context context) {
@@ -24,21 +28,18 @@ public class GetJSONTiresFromAssets {
             inputStream.read(buffer);
             inputStream.close();
             json = new String(buffer, "UTF-8");
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
 
-        System.out.println(json + "This is from the local folder");
+        Log.i(TAG, "Getting tires from the local JSON file.");
 
         Gson gson = new Gson();
 
         Tires myList = gson.fromJson(json, Tires.class);
 
-        //System.out.println("this is the amp: " + myLightBars.amp_draw);
-
-        System.out.println("this is the amp: " + myList.tires.get(0).cross_section);
-
-        System.out.println("specs:" + myList.tires.get(1).getSpecs());
+        Log.i(TAG, "Checking for specs data: " + myList.tires.get(0).getSpecs());
 
         ArrayList<VehicleAccessory> myAccessoryList = new ArrayList<>();
 
@@ -58,6 +59,5 @@ public class GetJSONTiresFromAssets {
         }
         return myAccessoryList;
     }
-
 }
 

@@ -1,7 +1,7 @@
 package com.example.imagetester;
 
 import android.content.Context;
-import android.widget.Toast;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -10,6 +10,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class GetJSONLightBarFromAssets {
+
+    private static final String TAG = "GetLightBarsFromAssets";
+
     Context context;
 
     public GetJSONLightBarFromAssets(Context context) {
@@ -30,20 +33,13 @@ public class GetJSONLightBarFromAssets {
             e.printStackTrace();
         }
 
-        //Toast.makeText(this, "Getting light bar info", Toast.LENGTH_SHORT);
-
-        System.out.println(json + "This is from the local folder");
+        Log.i(TAG, "Getting light bars from the local JSON file.");
 
         Gson gson = new Gson();
-        //LightBars myLightBars = gson.fromJson(json, LightBars.class);
 
         LightBars myList = gson.fromJson(json, LightBars.class);
 
-        //System.out.println("this is the amp: " + myLightBars.amp_draw);
-
-        System.out.println("this is the amp: " + myList.light_bars.get(0).amp_draw);
-
-        System.out.println("specs:" + myList.light_bars.get(1).getSpecs());
+        Log.i(TAG, "Checking for specs data: " + myList.light_bars.get(0).getSpecs());
 
         ArrayList<VehicleAccessory> myAccessoryList = new ArrayList<>();
 
@@ -63,5 +59,4 @@ public class GetJSONLightBarFromAssets {
         }
         return myAccessoryList;
     }
-
 }

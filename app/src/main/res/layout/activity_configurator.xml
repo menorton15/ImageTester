@@ -110,7 +110,7 @@
                     android:weightSum="1">
 
                     <Button
-                        android:id="@+id/button4"
+                        android:id="@+id/button_tires"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
                         android:textColor="@android:color/background_dark" />
 
                     <Button
-                        android:id="@+id/button5"
+                        android:id="@+id/button_change_color"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
                         android:textColor="@android:color/black" />
 
                     <Button
-                        android:id="@+id/button6"
+                        android:id="@+id/button_wheels"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -154,7 +154,7 @@
                         android:textColor="@android:color/black" />
 
                     <Button
-                        android:id="@+id/button7"
+                        android:id="@+id/button_light_bars"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -167,7 +167,7 @@
                         android:textColor="@android:color/black" />
 
                     <Button
-                        android:id="@+id/button8"
+                        android:id="@+id/button_shocks"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

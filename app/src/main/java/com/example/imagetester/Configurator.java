@@ -61,7 +61,7 @@ public class Configurator extends AppCompatActivity {
 
         img.setImageBitmap(mergedImages);
 
-        Button button = findViewById(R.id.button4);
+        Button button = findViewById(R.id.button_tires);
         button.setBackgroundColor(Color.LTGRAY);
 
 
