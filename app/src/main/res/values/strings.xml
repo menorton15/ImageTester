@@ -18,4 +18,19 @@
     <string name="email_message">Message:</string>
     <string name="manufacturer_name">Manufacturer name</string>
     <string name="send_to_email">Send List to Email</string>
+
+
+    <string-array name="make">
+        <item>Jeep</item>
+        <item>Polaris</item>
+    </string-array>
+    <string-array name="model">
+        <item>Wrangler</item>
+        <item>Razor</item>
+    </string-array>
+    <string-array name="year">
+        <item>2019</item>
+        <item>2018</item>
+    </string-array>
+
 </resources>

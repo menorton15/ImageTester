@@ -11,8 +11,11 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +27,9 @@ import java.util.ArrayList;
 import static java.lang.Float.valueOf;
 
 
-public class MainActivity extends AppCompatActivity implements AccessoryListRecyclerViewAdapter.OnItemClickListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements AccessoryListRecyclerViewAdapter.OnItemClickListener, View.OnClickListener
+
+, AdapterView.OnItemSelectedListener {
 
     //branch test
 
@@ -46,8 +51,23 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
     private String clickedAccessoryType;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //Action Bar Logo insert
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.boise4x4logo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        //Year Spinner
+        Spinner spinner = findViewById(R.id.spinnerYear);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.year, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //spinner.setAdapter(adapter);
+        //spinner.setOnItemSelectedListener(this);
+
 
         totalPriceTextView = findViewById(R.id.totalPrice);
         myCartList = new ArrayList<VehicleAccessory>();
@@ -245,5 +265,15 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                 buildAccessoryListRecyclerView();
                 break;
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
