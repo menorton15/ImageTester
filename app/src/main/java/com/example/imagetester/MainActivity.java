@@ -24,7 +24,8 @@ import java.util.ArrayList;
 import static java.lang.Float.valueOf;
 
 
-public class MainActivity extends AppCompatActivity implements AccessoryListRecyclerViewAdapter.OnItemClickListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements
+        AccessoryListRecyclerViewAdapter.OnItemClickListener, View.OnClickListener {
 
     //branch test
 
@@ -141,7 +142,8 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
 
        }
 
-        myAccessoryListRecyclerViewAdapter = new AccessoryListRecyclerViewAdapter(this, myAccessoryList);
+        myAccessoryListRecyclerViewAdapter = new AccessoryListRecyclerViewAdapter(this,
+                myAccessoryList);
         myAccessoryListRecyclerView.setAdapter(myAccessoryListRecyclerViewAdapter);
         myAccessoryListRecyclerViewAdapter.setOnItemClickListener(this);
 
@@ -159,10 +161,11 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         myRecyclerView.setAdapter(myCartListAdapter);
 
         myCartListAdapter.setOnItemClickListener(new CartListRecyclerViewAdapter.OnItemClickListener() {
-            @Override
+            /*@Override
             public void onItemClick(int position) {
 
             }
+            */
 
             @Override
             public void onDeleteClick(int position) {
@@ -216,7 +219,8 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_send_to_email:
-                Toast.makeText(this, "This will send your list to email", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "This will send your list to email",
+                        Toast.LENGTH_SHORT).show();
                 openSendEmailActivity(v);
                 break;
             case R.id.button_tires:
