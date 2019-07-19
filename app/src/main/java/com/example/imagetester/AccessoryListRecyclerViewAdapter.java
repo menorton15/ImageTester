@@ -128,10 +128,9 @@ public class AccessoryListRecyclerViewAdapter extends RecyclerView.Adapter<Acces
             case LIGHTBAR:
                 Picasso.get().load(R.drawable.light_bar_1).fit().centerInside().into(holder.myImageViewAccessoryView);
                 break;
-        }
-
-        if (accessoryType == TIRES) {
-            Picasso.get().load(R.drawable.jeep_tire).fit().centerInside().into(holder.myImageViewAccessoryView);
+            case LIFTKITS:
+                //Picasso.get().load(R.drawable.lift_kit).fit().centerInside().into(holder.myImageViewAccessoryView);
+                break;
         }
     }
 
