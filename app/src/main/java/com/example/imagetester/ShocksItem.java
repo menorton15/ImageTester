@@ -16,6 +16,10 @@ public class ShocksItem extends VehicleAccessory {
     String vehicleType;
     String image_url;
 
+    String extended;
+    String compressed;
+    String mount_type;
+
     String specs;
 
 
@@ -30,7 +34,9 @@ public class ShocksItem extends VehicleAccessory {
 
     public String getSpecs() {
 
-        specs = " ";
+        specs = "Extended: " + extended +
+        "\n Compressed: " + compressed +
+        "\n Mount type: " + mount_type;
         return specs;
     }
 

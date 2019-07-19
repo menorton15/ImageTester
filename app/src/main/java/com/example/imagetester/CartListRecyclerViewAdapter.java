@@ -17,8 +17,6 @@ public class CartListRecyclerViewAdapter extends RecyclerView.Adapter<CartListRe
     private OnItemClickListener myListener;
 
     public interface OnItemClickListener {
-        //void onItemClick(int position);
-
         void onDeleteClick(int position);
     }
 
@@ -40,19 +38,6 @@ public class CartListRecyclerViewAdapter extends RecyclerView.Adapter<CartListRe
             textView3 = itemView.findViewById(R.id.acc_description);
             textView4 = itemView.findViewById(R.id.acc_price);
             myDeleteImage = itemView.findViewById(R.id.image_delete);
-
-            /*itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.onItemClick(position);
-                        }
-                    }
-                }
-            });
-            */
 
             myDeleteImage.setOnClickListener(new View.OnClickListener() {
                 @Override

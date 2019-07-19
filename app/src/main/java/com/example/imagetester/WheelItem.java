@@ -7,13 +7,6 @@ public class WheelItem extends VehicleAccessory{
     String partNumber;
     String name;
     String description;
-    String bolt_circle;
-    String bolt_diameter;
-    String back_spacing;
-    String front_spacing;
-    String negative_offset;
-    String positive_offset;
-    String diameter;
     String brand;
     @SerializedName("part_number")
     String manufacturerPartNumber;
@@ -21,6 +14,12 @@ public class WheelItem extends VehicleAccessory{
     @SerializedName("type")
     String vehicleType;
     String image_url;
+
+    String back_spacing;
+    String size;
+    String offset;
+    String bolt_pattern;
+    String weight;
 
     String specs;
 
@@ -37,13 +36,11 @@ public class WheelItem extends VehicleAccessory{
     public String getSpecs() {
 
         specs = "Wheel Specs: \n" +
-                "Bolt Circle: " + bolt_circle + "\n" +
-                "Bolt Diameter: " + bolt_diameter + "\n" +
-                "Back Spacing: " + back_spacing + "\n" +
-                "Front Spacing: " + front_spacing + "\n" +
-                "Negative Offset: " + negative_offset + "\n" +
-                "Positive Offset: " + positive_offset + "\n" +
-                "Diameter: " + diameter;
+                "Size: " + size + "\n" +
+                "Offset: " + offset + "\n" +
+                "Weight: " + weight + "\n" +
+                "Bolt Pattern: " + bolt_pattern + "\n" +
+                "Back Spacing: " + back_spacing;
 
         return specs;
     }

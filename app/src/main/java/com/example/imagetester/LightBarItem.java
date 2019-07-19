@@ -15,12 +15,6 @@ public class LightBarItem extends VehicleAccessory {
     String partNumber;
     String name;
     String description;
-    String pattern;
-    String weight;
-    String output_watts;
-    String amp_draw;
-    String leds;
-    String lumens;
     String brand;
     @SerializedName("part_number")
     String manufacturerPartNumber;
@@ -28,6 +22,13 @@ public class LightBarItem extends VehicleAccessory {
     @SerializedName("type")
     String vehicleType;
     String image_url;
+
+    String pattern;
+    String weight;
+    String output_watts;
+    String amp_draw;
+    String leds;
+    String lumens;
 
     String specs;
 

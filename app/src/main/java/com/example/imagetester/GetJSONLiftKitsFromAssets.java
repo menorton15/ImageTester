@@ -45,7 +45,7 @@ public class GetJSONLiftKitsFromAssets {
 
         if(myList.lift_kits != null) {
             for (int i = 0; i < myList.lift_kits.size(); i++) {
-                myAccessoryList.add(new VehicleAccessory(AccessoryType.LIGHTBAR,
+                myAccessoryList.add(new VehicleAccessory(AccessoryType.LIFTKITS,
                         myList.lift_kits.get(i).partNumber,
                         myList.lift_kits.get(i).name,
                         myList.lift_kits.get(i).description,

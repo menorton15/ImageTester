@@ -45,7 +45,7 @@ public class GetJSONShocksFromAssets {
 
         if(myList.shocks != null) {
             for (int i = 0; i < myList.shocks.size(); i++) {
-                myAccessoryList.add(new VehicleAccessory(AccessoryType.LIGHTBAR,
+                myAccessoryList.add(new VehicleAccessory(AccessoryType.SHOCKS,
                         myList.shocks.get(i).partNumber,
                         myList.shocks.get(i).name,
                         myList.shocks.get(i).description,

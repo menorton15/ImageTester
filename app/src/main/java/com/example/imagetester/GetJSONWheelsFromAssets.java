@@ -45,7 +45,7 @@ public class GetJSONWheelsFromAssets {
 
         if(myList.wheels != null) {
             for (int i = 0; i < myList.wheels.size(); i++) {
-                myAccessoryList.add(new VehicleAccessory(AccessoryType.LIGHTBAR,
+                myAccessoryList.add(new VehicleAccessory(AccessoryType.WHEEL,
                         myList.wheels.get(i).partNumber,
                         myList.wheels.get(i).name,
                         myList.wheels.get(i).description,

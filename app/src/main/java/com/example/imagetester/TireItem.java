@@ -8,9 +8,6 @@ public class TireItem extends VehicleAccessory {
     String partNumber;
     String name;
     String description;
-    String cross_section;
-    String aspect_ratio;
-    String diameter;
     String brand;
     @SerializedName("part_number")
     String manufacturerPartNumber;
@@ -18,6 +15,10 @@ public class TireItem extends VehicleAccessory {
     @SerializedName("type")
     String vehicleType;
     String image_url;
+
+    String cross_section;
+    String aspect_ratio;
+    String diameter;
 
     String specs;
 
