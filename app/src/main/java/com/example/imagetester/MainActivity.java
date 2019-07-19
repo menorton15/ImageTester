@@ -275,6 +275,8 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
             currentVehicleType = "SUV";
         else if(text.equals("Polaris"))
             currentVehicleType = "UTV";
+        myAccessoryList = null;
+        buildAccessoryListRecyclerView();
 
         Log.i("SpinnerVariable", "" + currentVehicleType);
     }
