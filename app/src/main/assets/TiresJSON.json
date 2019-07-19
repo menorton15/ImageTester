@@ -24,7 +24,34 @@
     "cross_section":"205",
     "aspect_ratio":"75",
     "diameter":"15"
-  }],
+  },
+  {
+    "id":"1",
+    "name":"Tire 1",
+    "description":"",
+    "brand":"Firestone",
+    "part_number":"1",
+    "price":"116.00",
+    "type":"ATM",
+    "image_url":"https:\/\/openrpg.org\/images\/jeep_tire.png",
+    "cross_section":"205",
+    "aspect_ratio":"75",
+    "diameter":"15"
+  },
+  {
+    "id":"1",
+    "name":"Tire 1",
+    "description":"",
+    "brand":"Firestone",
+    "part_number":"1",
+    "price":"116.00",
+    "type":"ATV",
+    "image_url":"https:\/\/openrpg.org\/images\/jeep_tire.png",
+    "cross_section":"205",
+    "aspect_ratio":"75",
+    "diameter":"15"
+  }
+],
 
   "accessory_type":"tire"
 }

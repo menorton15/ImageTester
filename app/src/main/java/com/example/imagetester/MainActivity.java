@@ -55,8 +55,10 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        /*
+
         //Action Bar Logo insert
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.drawable.boise4x4logo);
@@ -67,10 +69,10 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         Spinner spinner = findViewById(R.id.spinnerYear);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.year, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //spinner.setAdapter(adapter);
-        //spinner.setOnItemSelectedListener(this);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
 
-        */
+
 
         if (android.os.Build.VERSION.SDK_INT > 9)
         {
@@ -82,8 +84,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         myCartList = new ArrayList<VehicleAccessory>();
         Bitmap smallImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire);
         Log.i("Database", "W: " + smallImage.getWidth() + " H: " + smallImage.getHeight());
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
 
         buildRecyclerView();
         calculateTotalPrice();
@@ -234,7 +235,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                 //GetJSONLightBarFromAssets getLightBars = new GetJSONLightBarFromAssets(this);
                 //myAccessoryList = getLightBars.getJSONLightBar();
 
-                pause(6000);
+                //pause(6000);
                 buildAccessoryListRecyclerView();
                 break;
             case R.id.button_shocks:
@@ -265,6 +266,8 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+        String text = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
     }
 
     @Override
