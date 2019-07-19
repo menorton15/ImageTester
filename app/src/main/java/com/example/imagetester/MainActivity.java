@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        /*
+
         //Action Bar Logo insert
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.drawable.boise4x4logo);
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         //spinner.setAdapter(adapter);
         //spinner.setOnItemSelectedListener(this);
 
-        */
+
 
         if (android.os.Build.VERSION.SDK_INT > 9)
         {
