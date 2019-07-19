@@ -1,6 +1,8 @@
 package com.example.imagetester;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.StrictMode;
@@ -21,8 +23,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import static java.lang.Float.valueOf;
@@ -49,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
 
     private TextView totalPriceTextView;
     private Button buttonNextActivity;
-    private String clickedAccessoryType;
     private String currentVehicleType;
 
 
@@ -88,19 +92,20 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         spinnerVehicleType.setAdapter(adapterVehicleType);
         spinnerVehicleType.setOnItemSelectedListener(this);
 
+        totalPriceTextView = findViewById(R.id.totalPrice);
 
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        String cartJson = sharedPref.getString("CART", "");
+        Type type =new TypeToken<ArrayList<VehicleAccessory>>(){}.getType();
+        Gson gson = new Gson();
+        myCartList = gson.fromJson(cartJson, type);
 
-        if (android.os.Build.VERSION.SDK_INT > 9)
-        {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
+        if(myCartList == null) {
+            myCartList = new ArrayList<>();
         }
 
-        totalPriceTextView = findViewById(R.id.totalPrice);
-        myCartList = new ArrayList<VehicleAccessory>();
-        Bitmap smallImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire);
-        Log.i("Database", "W: " + smallImage.getWidth() + " H: " + smallImage.getHeight());
-
+        //Bitmap smallImage = BitmapFactory.decodeResource(getResources(), R.drawable.jeep_tire);
+        //Log.i("Database", "W: " + smallImage.getWidth() + " H: " + smallImage.getHeight());
 
         buildRecyclerView();
         calculateTotalPrice();
@@ -123,18 +128,24 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
             img.getLayoutParams().width = 300;
         }
         img.requestLayout();
-        /*
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        String cartJson = sharedPref.getString("CART", "");
-        String currentVehicleJson = sharedPref.getString("CURRENT_TAB", "");
-        String currentTabString = sharedPref.getString("CURRENT_VEHICLE", "");
-
-        Gson gson = new Gson();
-        myCartObject cart = gson.fromJson(cartJson, myCartObject.class);
-        myVehicleObject currentVehicle = gson.fromJson(currentVehicleJson, myVehicleObject.class);
-        */
 
     }
+
+
+    protected void onPause() {
+
+        super.onPause();
+
+        Gson gson = new Gson();
+        String cartJson = gson.toJson(myCartList);
+
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("CART", cartJson);
+
+        editor.apply();
+    }
+
 
     @Override
     public void onAddToCartIconClick(int position) {
@@ -224,58 +235,34 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                 break;
             case R.id.button_tires:
                 Toast.makeText(this, "Tires List", Toast.LENGTH_SHORT).show();
-                //clickedAccessoryType = "tires";
                 GetJSONTiresFromAssets getTires = new GetJSONTiresFromAssets(this);
                 myAccessoryList = getTires.getJSONTires(currentVehicleType);
                 buildAccessoryListRecyclerView();
                 break;
             case R.id.button_wheels:
                 Toast.makeText(this, "Wheels List", Toast.LENGTH_SHORT).show();
-                //clickedAccessoryType = "wheels";
                 GetJSONWheelsFromAssets getWheels = new GetJSONWheelsFromAssets(this);
                 myAccessoryList = getWheels.getJSONWheels(currentVehicleType);
                 buildAccessoryListRecyclerView();
                 break;
             case R.id.button_light_bars:
                 Toast.makeText(this, "Light Bars List", Toast.LENGTH_SHORT).show();
-                clickedAccessoryType = "light_bars";
-
-                //GetLightBarsFromAPI getLightBars = new GetLightBarsFromAPI(this);
-                //myAccessoryList = getLightBars.getJSONLightBar();
-
-                GetLightBarListFromAPI getLightBars = new GetLightBarListFromAPI(this);
-                Thread thread = new Thread(getLightBars);
-                thread.start();
-                myAccessoryList = GetLightBarListFromAPI.myAccessoryList;
-
-                //GetJSONLightBarFromAssets getLightBars = new GetJSONLightBarFromAssets(this);
-                //myAccessoryList = getLightBars.getJSONLightBar();
-
-                //pause(6000);
+                GetJSONLightBarFromAssets getLightBars = new GetJSONLightBarFromAssets(this);
+                myAccessoryList = getLightBars.getJSONLightBar(currentVehicleType);
                 buildAccessoryListRecyclerView();
                 break;
             case R.id.button_shocks:
                 Toast.makeText(this, "Shocks List", Toast.LENGTH_SHORT).show();
-                //clickedAccessoryType = "shocks";
                 GetJSONShocksFromAssets getShocks = new GetJSONShocksFromAssets(this);
                 myAccessoryList = getShocks.getJSONShocks(currentVehicleType);
                 buildAccessoryListRecyclerView();
                 break;
             case R.id.button_lift_kits:
                 Toast.makeText(this, "Lift Kits List", Toast.LENGTH_SHORT).show();
-                //clickedAccessoryType = "lift_kits";
                 GetJSONLiftKitsFromAssets getLiftKits = new GetJSONLiftKitsFromAssets(this);
                 myAccessoryList = getLiftKits.getJSONLiftKits(currentVehicleType);
                 buildAccessoryListRecyclerView();
                 break;
-        }
-    }
-
-    public static void pause(int ms) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException e) {
-            System.err.format("IOException: %s%n", e);
         }
     }
 
