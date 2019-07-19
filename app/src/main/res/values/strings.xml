@@ -20,7 +20,7 @@
     <string name="send_to_email">Send List to Email</string>
 
 
-    <string-array name="make">
+    <string-array name="vehicleType">
         <item>Jeep</item>
         <item>Polaris</item>
     </string-array>
