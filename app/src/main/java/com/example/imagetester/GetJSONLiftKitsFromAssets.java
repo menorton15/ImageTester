@@ -15,9 +15,6 @@ public class GetJSONLiftKitsFromAssets {
 
     Context context;
 
-    String filename;
-    String accessory;
-
     public GetJSONLiftKitsFromAssets(Context context) {
         this.context = context;
     }
@@ -54,7 +51,7 @@ public class GetJSONLiftKitsFromAssets {
                         myList.lift_kits.get(i).description,
                         myList.lift_kits.get(i).brand,
                         myList.lift_kits.get(i).manufacturerPartNumber,
-                         myList.lift_kits.get(i).price,
+                        myList.lift_kits.get(i).price,
                         myList.lift_kits.get(i).vehicleType,
                         myList.lift_kits.get(i).getSpecs(),
                         myList.lift_kits.get(i).image_url));

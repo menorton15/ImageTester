@@ -3,6 +3,7 @@ package com.example.imagetester;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        /*
         //Action Bar Logo insert
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.drawable.boise4x4logo);
@@ -68,6 +70,13 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         //spinner.setAdapter(adapter);
         //spinner.setOnItemSelectedListener(this);
 
+        */
+
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         totalPriceTextView = findViewById(R.id.totalPrice);
         myCartList = new ArrayList<VehicleAccessory>();
@@ -76,8 +85,6 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        createCartList();
-        //buildAccessoryListRecyclerView();
         buildRecyclerView();
         calculateTotalPrice();
         setButtons();
@@ -125,48 +132,16 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
     }
 
 
-    public void createCartList() {
-
-        myCartList = new ArrayList<>();
-    }
-
-
     private void buildAccessoryListRecyclerView() {
 
         myAccessoryListRecyclerView = findViewById(R.id.accessoryListRecyclerView);
         myAccessoryListRecyclerView.setHasFixedSize(true);
         myAccessoryListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-       switch(clickedAccessoryType) {
-           case "tires":
-               GetJSONTiresFromAssets getTires = new GetJSONTiresFromAssets(this);
-               myAccessoryList = getTires.getJSONTires();
-               break;
-           case "light_bars":
-               GetJSONLightBarFromAssets getLightBars = new GetJSONLightBarFromAssets(this);
-               myAccessoryList = getLightBars.getJSONLightBar();
-               break;
-           case "wheels":
-               GetJSONWheelsFromAssets getWheels = new GetJSONWheelsFromAssets(this);
-               myAccessoryList = getWheels.getJSONWheels();
-               break;
-           case "shocks":
-               GetJSONShocksFromAssets getShocks = new GetJSONShocksFromAssets(this);
-               myAccessoryList = getShocks.getJSONShocks();
-               break;
-           case "lift_kits":
-               GetJSONLiftKitsFromAssets getLiftKits = new GetJSONLiftKitsFromAssets(this);
-               myAccessoryList = getLiftKits.getJSONLiftKits();
-               break;
-
-       }
-
         myAccessoryListRecyclerViewAdapter = new AccessoryListRecyclerViewAdapter(this, myAccessoryList);
         myAccessoryListRecyclerView.setAdapter(myAccessoryListRecyclerViewAdapter);
         myAccessoryListRecyclerViewAdapter.setOnItemClickListener(this);
-
     }
-
 
     public void buildRecyclerView() {
 
@@ -179,15 +154,11 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         myRecyclerView.setAdapter(myCartListAdapter);
 
         myCartListAdapter.setOnItemClickListener(new CartListRecyclerViewAdapter.OnItemClickListener() {
-            /*@Override
-            public void onItemClick(int position) {
-
-            }
-            */
 
             @Override
             public void onDeleteClick(int position) {
-                removeItem(position);
+                myCartList.remove(position);
+                myCartListAdapter.notifyItemRemoved(position);
                 calculateTotalPrice();
             }
         });
@@ -206,24 +177,19 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
 
     public void setButtons() {
 
-        buttonNextActivity = findViewById(R.id.button_send_to_email);
         Button buttonTires = findViewById(R.id.button_tires);
         Button buttonWheels = findViewById(R.id.button_wheels);
         Button buttonLightBars = findViewById(R.id.button_light_bars);
         Button buttonShocks = findViewById(R.id.button_shocks);
         Button buttonLiftKits = findViewById(R.id.button_lift_kits);
+        buttonNextActivity = findViewById(R.id.button_send_to_email);
 
         buttonTires.setOnClickListener(this);
         buttonWheels.setOnClickListener(this);
         buttonLightBars.setOnClickListener(this);
-        buttonNextActivity.setOnClickListener(this);
         buttonShocks.setOnClickListener(this);
         buttonLiftKits.setOnClickListener(this);
-    }
-
-    public void removeItem(int position) {
-        myCartList.remove(position);
-        myCartListAdapter.notifyItemRemoved(position);
+        buttonNextActivity.setOnClickListener(this);
     }
 
     public void openSendEmailActivity(View v) {
@@ -231,7 +197,6 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         intent.putExtra("LIST", (Serializable) myCartList);
         startActivity(intent);
     }
-
 
     @Override
     public void onClick(View v) {
@@ -242,29 +207,58 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                 break;
             case R.id.button_tires:
                 Toast.makeText(this, "Tires List", Toast.LENGTH_SHORT).show();
-                clickedAccessoryType = "tires";
+                //clickedAccessoryType = "tires";
+                GetJSONTiresFromAssets getTires = new GetJSONTiresFromAssets(this);
+                myAccessoryList = getTires.getJSONTires();
                 buildAccessoryListRecyclerView();
                 break;
             case R.id.button_wheels:
                 Toast.makeText(this, "Wheels List", Toast.LENGTH_SHORT).show();
-                clickedAccessoryType = "wheels";
+                //clickedAccessoryType = "wheels";
+                GetJSONWheelsFromAssets getWheels = new GetJSONWheelsFromAssets(this);
+                myAccessoryList = getWheels.getJSONWheels();
                 buildAccessoryListRecyclerView();
                 break;
             case R.id.button_light_bars:
                 Toast.makeText(this, "Light Bars List", Toast.LENGTH_SHORT).show();
                 clickedAccessoryType = "light_bars";
+
+                //GetLightBarsFromAPI getLightBars = new GetLightBarsFromAPI(this);
+                //myAccessoryList = getLightBars.getJSONLightBar();
+
+                GetLightBarListFromAPI getLightBars = new GetLightBarListFromAPI(this);
+                Thread thread = new Thread(getLightBars);
+                thread.start();
+                myAccessoryList = GetLightBarListFromAPI.myAccessoryList;
+
+                //GetJSONLightBarFromAssets getLightBars = new GetJSONLightBarFromAssets(this);
+                //myAccessoryList = getLightBars.getJSONLightBar();
+
+                pause(6000);
                 buildAccessoryListRecyclerView();
                 break;
             case R.id.button_shocks:
                 Toast.makeText(this, "Shocks List", Toast.LENGTH_SHORT).show();
-                clickedAccessoryType = "shocks";
+                //clickedAccessoryType = "shocks";
+                GetJSONShocksFromAssets getShocks = new GetJSONShocksFromAssets(this);
+                myAccessoryList = getShocks.getJSONShocks();
                 buildAccessoryListRecyclerView();
                 break;
             case R.id.button_lift_kits:
                 Toast.makeText(this, "Lift Kits List", Toast.LENGTH_SHORT).show();
-                clickedAccessoryType = "lift_kits";
+                //clickedAccessoryType = "lift_kits";
+                GetJSONLiftKitsFromAssets getLiftKits = new GetJSONLiftKitsFromAssets(this);
+                myAccessoryList = getLiftKits.getJSONLiftKits();
                 buildAccessoryListRecyclerView();
                 break;
+        }
+    }
+
+    public static void pause(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            System.err.format("IOException: %s%n", e);
         }
     }
 
