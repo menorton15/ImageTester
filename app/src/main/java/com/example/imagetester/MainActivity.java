@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
     private TextView totalPriceTextView;
     private Button buttonNextActivity;
     private String clickedAccessoryType;
+    private String currentVehicleType;
 
 
 
@@ -225,14 +226,14 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                 Toast.makeText(this, "Tires List", Toast.LENGTH_SHORT).show();
                 //clickedAccessoryType = "tires";
                 GetJSONTiresFromAssets getTires = new GetJSONTiresFromAssets(this);
-                myAccessoryList = getTires.getJSONTires();
+                myAccessoryList = getTires.getJSONTires(currentVehicleType);
                 buildAccessoryListRecyclerView();
                 break;
             case R.id.button_wheels:
                 Toast.makeText(this, "Wheels List", Toast.LENGTH_SHORT).show();
                 //clickedAccessoryType = "wheels";
                 GetJSONWheelsFromAssets getWheels = new GetJSONWheelsFromAssets(this);
-                myAccessoryList = getWheels.getJSONWheels();
+                myAccessoryList = getWheels.getJSONWheels(currentVehicleType);
                 buildAccessoryListRecyclerView();
                 break;
             case R.id.button_light_bars:
@@ -257,14 +258,14 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                 Toast.makeText(this, "Shocks List", Toast.LENGTH_SHORT).show();
                 //clickedAccessoryType = "shocks";
                 GetJSONShocksFromAssets getShocks = new GetJSONShocksFromAssets(this);
-                myAccessoryList = getShocks.getJSONShocks();
+                myAccessoryList = getShocks.getJSONShocks(currentVehicleType);
                 buildAccessoryListRecyclerView();
                 break;
             case R.id.button_lift_kits:
                 Toast.makeText(this, "Lift Kits List", Toast.LENGTH_SHORT).show();
                 //clickedAccessoryType = "lift_kits";
                 GetJSONLiftKitsFromAssets getLiftKits = new GetJSONLiftKitsFromAssets(this);
-                myAccessoryList = getLiftKits.getJSONLiftKits();
+                myAccessoryList = getLiftKits.getJSONLiftKits(currentVehicleType);
                 buildAccessoryListRecyclerView();
                 break;
         }
@@ -283,6 +284,12 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
 
         String text = parent.getItemAtPosition(position).toString();
         Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+        if(text.equals("Jeep"))
+            currentVehicleType = "SUV";
+        else if(text.equals("Polaris"))
+            currentVehicleType = "UTV";
+
+        Log.i("SpinnerVariable", "" + currentVehicleType);
     }
 
     @Override

@@ -19,7 +19,7 @@ public class GetJSONLightBarFromAssets {
         this.context = context;
     }
 
-    public ArrayList<VehicleAccessory> getJSONLightBar() {
+    public ArrayList<VehicleAccessory> getJSONLightBar(String selectedVehicle) {
         String json = null;
         try {
             InputStream inputStream = context.getAssets().open("LightBarJSON.json");
@@ -45,7 +45,8 @@ public class GetJSONLightBarFromAssets {
 
         if(myList.light_bars != null) {
             for (int i = 0; i < myList.light_bars.size(); i++) {
-                myAccessoryList.add(new VehicleAccessory(AccessoryType.LIGHTBAR,
+                if(myList.light_bars.get(i).vehicleType.equals(selectedVehicle))
+                    myAccessoryList.add(new VehicleAccessory(AccessoryType.LIGHTBAR,
                         myList.light_bars.get(i).partNumber,
                         myList.light_bars.get(i).name,
                         myList.light_bars.get(i).description,
