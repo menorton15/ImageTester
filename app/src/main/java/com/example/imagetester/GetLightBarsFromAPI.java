@@ -2,8 +2,8 @@ package com.example.imagetester;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -16,24 +16,20 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GetLightBarListFromAPI implements Runnable {
+public class GetLightBarsFromAPI {
 
-    //public static LightBars myLightBars;
-    //public static LightBarItem myLightBarItem;
     public static ArrayList<VehicleAccessory> myAccessoryList;
 
-    //private WeakReference<Activity> activityWeakReference;
-
-    private MainActivity activity;
+    Context context;
 
 
-    public GetLightBarListFromAPI(MainActivity activity) {
-        this.activity = activity;
+    public GetLightBarsFromAPI(Context context) {
+        this.context = context;
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    @Override
-    public void run() {
+    public ArrayList<VehicleAccessory> getJSONLightBar() {
+
         String json = null;
 
         String accessoryType = "light_bars";
@@ -59,23 +55,7 @@ public class GetLightBarListFromAPI implements Runnable {
 
         LightBars myList = gson.fromJson(json, LightBars.class);
 
-        //myLightBars = new LightBars();
-
-        //myLightBars = gson.fromJson(responseBody, LightBars.class);
-
-        //myLightBars = gson.fromJson(json, LightBars.class);
-
-        //myLightBarItem = gson.fromJson(json, LightBarItem.class);
-
-        //final Activity activity = activityWeakReference.get();
-
         System.out.println(json);
-
-        //System.out.println(myLightBarItem.getSpecs());
-
-        //System.out.println(myLightBars.get(0).amp_draw);
-
-        //System.out.println(myLightBars.getPartName());
 
         myAccessoryList = new ArrayList<>();
 
@@ -92,15 +72,8 @@ public class GetLightBarListFromAPI implements Runnable {
                         myList.light_bars.get(i).getSpecs(),
                         myList.light_bars.get(i).image_url));
             }
-
-            if (activity != null) {
-                activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(activity, "This should get lightbars", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
         }
+
+        return myAccessoryList;
     }
 }
