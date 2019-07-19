@@ -19,7 +19,7 @@ public class GetJSONWheelsFromAssets {
         this.context = context;
     }
 
-    public ArrayList<VehicleAccessory> getJSONWheels() {
+    public ArrayList<VehicleAccessory> getJSONWheels(String selectedVehicle) {
         String json = null;
         try {
             InputStream inputStream = context.getAssets().open("WheelsJSON.json");
@@ -45,7 +45,8 @@ public class GetJSONWheelsFromAssets {
 
         if(myList.wheels != null) {
             for (int i = 0; i < myList.wheels.size(); i++) {
-                myAccessoryList.add(new VehicleAccessory(AccessoryType.WHEEL,
+                if(myList.wheels.get(i).vehicleType.equals(selectedVehicle))
+                    myAccessoryList.add(new VehicleAccessory(AccessoryType.WHEEL,
                         myList.wheels.get(i).partNumber,
                         myList.wheels.get(i).name,
                         myList.wheels.get(i).description,

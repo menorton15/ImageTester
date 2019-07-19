@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
 
     private TextView totalPriceTextView;
     private Button buttonNextActivity;
+    private String clickedAccessoryType;
+    private String currentVehicleType;
+
 
 
     @Override
@@ -84,6 +87,14 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         adapterVehicleType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerVehicleType.setAdapter(adapterVehicleType);
         spinnerVehicleType.setOnItemSelectedListener(this);
+
+
+
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         totalPriceTextView = findViewById(R.id.totalPrice);
         myCartList = new ArrayList<VehicleAccessory>();
@@ -213,34 +224,58 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
                 break;
             case R.id.button_tires:
                 Toast.makeText(this, "Tires List", Toast.LENGTH_SHORT).show();
+                //clickedAccessoryType = "tires";
                 GetJSONTiresFromAssets getTires = new GetJSONTiresFromAssets(this);
-                myAccessoryList = getTires.getJSONTires();
+                myAccessoryList = getTires.getJSONTires(currentVehicleType);
                 buildAccessoryListRecyclerView();
                 break;
             case R.id.button_wheels:
                 Toast.makeText(this, "Wheels List", Toast.LENGTH_SHORT).show();
+                //clickedAccessoryType = "wheels";
                 GetJSONWheelsFromAssets getWheels = new GetJSONWheelsFromAssets(this);
-                myAccessoryList = getWheels.getJSONWheels();
+                myAccessoryList = getWheels.getJSONWheels(currentVehicleType);
                 buildAccessoryListRecyclerView();
                 break;
             case R.id.button_light_bars:
                 Toast.makeText(this, "Light Bars List", Toast.LENGTH_SHORT).show();
-                GetJSONLightBarFromAssets getLightBars = new GetJSONLightBarFromAssets(this);
-                myAccessoryList = getLightBars.getJSONLightBar();
+                clickedAccessoryType = "light_bars";
+
+                //GetLightBarsFromAPI getLightBars = new GetLightBarsFromAPI(this);
+                //myAccessoryList = getLightBars.getJSONLightBar();
+
+                GetLightBarListFromAPI getLightBars = new GetLightBarListFromAPI(this);
+                Thread thread = new Thread(getLightBars);
+                thread.start();
+                myAccessoryList = GetLightBarListFromAPI.myAccessoryList;
+
+                //GetJSONLightBarFromAssets getLightBars = new GetJSONLightBarFromAssets(this);
+                //myAccessoryList = getLightBars.getJSONLightBar();
+
+                //pause(6000);
                 buildAccessoryListRecyclerView();
                 break;
             case R.id.button_shocks:
                 Toast.makeText(this, "Shocks List", Toast.LENGTH_SHORT).show();
+                //clickedAccessoryType = "shocks";
                 GetJSONShocksFromAssets getShocks = new GetJSONShocksFromAssets(this);
-                myAccessoryList = getShocks.getJSONShocks();
+                myAccessoryList = getShocks.getJSONShocks(currentVehicleType);
                 buildAccessoryListRecyclerView();
                 break;
             case R.id.button_lift_kits:
                 Toast.makeText(this, "Lift Kits List", Toast.LENGTH_SHORT).show();
+                //clickedAccessoryType = "lift_kits";
                 GetJSONLiftKitsFromAssets getLiftKits = new GetJSONLiftKitsFromAssets(this);
-                myAccessoryList = getLiftKits.getJSONLiftKits();
+                myAccessoryList = getLiftKits.getJSONLiftKits(currentVehicleType);
                 buildAccessoryListRecyclerView();
                 break;
+        }
+    }
+
+    public static void pause(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            System.err.format("IOException: %s%n", e);
         }
     }
 
@@ -249,6 +284,12 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
 
         String text = parent.getItemAtPosition(position).toString();
         Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+        if(text.equals("Jeep"))
+            currentVehicleType = "SUV";
+        else if(text.equals("Polaris"))
+            currentVehicleType = "UTV";
+
+        Log.i("SpinnerVariable", "" + currentVehicleType);
     }
 
     @Override

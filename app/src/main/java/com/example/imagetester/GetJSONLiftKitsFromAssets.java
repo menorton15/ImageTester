@@ -19,7 +19,7 @@ public class GetJSONLiftKitsFromAssets {
         this.context = context;
     }
     
-    public ArrayList<VehicleAccessory> getJSONLiftKits() {
+    public ArrayList<VehicleAccessory> getJSONLiftKits(String selectedVehicle) {
         String json = null;
         try {
             InputStream inputStream = context.getAssets().open("LiftKitJSON.json");
@@ -45,7 +45,8 @@ public class GetJSONLiftKitsFromAssets {
 
         if(myList.lift_kits != null) {
             for (int i = 0; i < myList.lift_kits.size(); i++) {
-                myAccessoryList.add(new VehicleAccessory(AccessoryType.LIFTKITS,
+                if(myList.lift_kits.get(i).vehicleType.equals(selectedVehicle))
+                    myAccessoryList.add(new VehicleAccessory(AccessoryType.LIFTKITS,
                         myList.lift_kits.get(i).partNumber,
                         myList.lift_kits.get(i).name,
                         myList.lift_kits.get(i).description,

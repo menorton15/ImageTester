@@ -2,6 +2,7 @@ package com.example.imagetester;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -19,7 +20,7 @@ public class GetJSONTiresFromAssets {
         this.context = context;
     }
 
-    public ArrayList<VehicleAccessory> getJSONTires() {
+    public ArrayList<VehicleAccessory> getJSONTires(String selectedVehicle) {
         String json = null;
         try {
             InputStream inputStream = context.getAssets().open("TiresJSON.json");
@@ -45,7 +46,8 @@ public class GetJSONTiresFromAssets {
 
         if(myList.tires != null) {
             for (int i = 0; i < myList.tires.size(); i++) {
-                myAccessoryList.add(new VehicleAccessory(AccessoryType.TIRES,
+                if(myList.tires.get(i).vehicleType.equals(selectedVehicle))
+                    myAccessoryList.add(new VehicleAccessory(AccessoryType.TIRES,
                         myList.tires.get(i).partNumber,
                         myList.tires.get(i).name,
                         myList.tires.get(i).description,

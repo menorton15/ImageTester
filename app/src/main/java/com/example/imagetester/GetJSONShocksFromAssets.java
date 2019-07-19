@@ -19,7 +19,7 @@ public class GetJSONShocksFromAssets {
         this.context = context;
     }
 
-    public ArrayList<VehicleAccessory> getJSONShocks() {
+    public ArrayList<VehicleAccessory> getJSONShocks(String selectedVehicle) {
         String json = null;
         try {
             InputStream inputStream = context.getAssets().open("ShocksJSON.json");
@@ -45,7 +45,8 @@ public class GetJSONShocksFromAssets {
 
         if(myList.shocks != null) {
             for (int i = 0; i < myList.shocks.size(); i++) {
-                myAccessoryList.add(new VehicleAccessory(AccessoryType.SHOCKS,
+                if(myList.shocks.get(i).vehicleType.equals(selectedVehicle))
+                    myAccessoryList.add(new VehicleAccessory(AccessoryType.SHOCKS,
                         myList.shocks.get(i).partNumber,
                         myList.shocks.get(i).name,
                         myList.shocks.get(i).description,
