@@ -66,11 +66,26 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //Year Spinner
-        Spinner spinner = findViewById(R.id.spinnerYear);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.year, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        Spinner spinnerYear = findViewById(R.id.spinnerYear);
+        ArrayAdapter<CharSequence> adapterYear = ArrayAdapter.createFromResource(this,R.array.year, android.R.layout.simple_spinner_item);
+        adapterYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerYear.setAdapter(adapterYear);
+        spinnerYear.setOnItemSelectedListener(this);
+
+
+        //Model Spinner
+        Spinner spinnerModel = findViewById(R.id.spinnerModel);
+        ArrayAdapter<CharSequence> adapterModel = ArrayAdapter.createFromResource(this,R.array.model, android.R.layout.simple_spinner_item);
+        adapterModel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerModel.setAdapter(adapterModel);
+        spinnerModel.setOnItemSelectedListener(this);
+
+        //Make Spinner
+        Spinner spinnerVehicleType = findViewById(R.id.spinnerVehicleType);
+        ArrayAdapter<CharSequence> adapterVehicleType = ArrayAdapter.createFromResource(this,R.array.vehicleType, android.R.layout.simple_spinner_item);
+        adapterVehicleType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerVehicleType.setAdapter(adapterVehicleType);
+        spinnerVehicleType.setOnItemSelectedListener(this);
 
 
 
