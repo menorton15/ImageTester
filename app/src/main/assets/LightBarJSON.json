@@ -1,36 +1,37 @@
 {"light_bars":[
   {
-    "id":"1",
-    "name":"Light Bar 1",
+    "id":"LB000001",
+    "name":"DBSM4S-K",
     "description":"",
     "brand":"DB LINK",
     "part_number":"DBSM4S-K",
     "price":"120.00",
-    "type":"SUV",
+    "type":"",
     "image_url":"",
     "pattern":"Spot",
-    "weight":"2.0",
-    "output_watts":"26.00",
+    "weight":"1.9 KGS",
+    "output_watts":"26.30W",
     "amp_draw":"24V\/1.096A",
     "leds":"8",
     "lumens":"1080"
   },
   {
-    "id":"1",
-    "name":"Light Bar 2",
+    "id":"LB000002",
+    "name":"DBSM6F",
     "description":"",
     "brand":"DB LINK",
-    "part_number":"DBSM4S-K",
-    "price":"120.00",
-    "type":"SUV",
+    "part_number":"DBSM6F",
+    "price":"150.56",
+    "type":"",
     "image_url":"",
-    "pattern":"Spot",
-    "weight":"2.0",
-    "output_watts":"26.00",
-    "amp_draw":"24V\/1.096A",
-    "leds":"8",
-    "lumens":"1080"
-  }],
+    "pattern":"Flood",
+    "weight":"3 KGS",
+    "output_watts":"54.24W",
+    "amp_draw":"24V\/2.260A",
+    "leds":"6",
+    "lumens":"5400"
+  }
+],
 
   "accessory_type":"light_bar"
 }

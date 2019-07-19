@@ -1,24 +1,45 @@
-{"shocks":[
+{"shocks":
+[
   {
-    "id":"1",
-    "name":"Shock 1",
+    "id":"S000001",
+    "name":"Tuff Country 69162",
     "description":"",
-    "brand":"",
-    "part_number":"1",
-    "price":"136.00",
+    "brand":"Tuff Country",
+    "part_number":"",
+    "price":"45.99",
     "type":"SUV",
-    "image_url":""
+    "image_url":"",
+    "extended":"29.5",
+    "compressed":"17",
+    "mount_type": "Eyelet"
   },
   {
-    "id":"2",
-    "name":"Shock 2",
+    "id":"S000002",
+    "name":"FRS-985-24-065",
     "description":"",
-    "brand":"",
-    "part_number":"1",
-    "price":"132.00",
+    "brand":"Fox Racing",
+    "part_number":"",
+    "price":"169.95",
     "type":"SUV",
-    "image_url":""
-  }],
+    "image_url":"",
+    "extended":"27.45",
+    "compressed":"17.35",
+    "mount_type": "Eyelet"
+  },
+  {
+    "id":"S000003",
+    "name":"KSS-20001-130",
+    "description":"",
+    "brand":"King Off-Road",
+    "part_number":"",
+    "price":"430.92",
+    "type":"UTV",
+    "image_url":"",
+    "extended":"16.211",
+    "compressed":"11.249",
+    "mount_type": "Eyelet"
+  }
+],
 
   "accessory_type":"shocks"
 }

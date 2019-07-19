@@ -1,24 +1,26 @@
-{"lift_kits":[
+{"lift_kits":
+[
   {
-    "id":"1",
-    "name":"Lift Kit 1",
+    "id":"LK000001",
+    "name":"Teraflex 2.5 in. Lift Kit w/ 9550 VSS Shocks",
     "description":"",
-    "brand":"",
-    "part_number":"1",
-    "price":"136.00",
+    "brand":"Teraflex",
+    "part_number":"",
+    "price":"833.99",
     "type":"SUV",
     "image_url":""
   },
   {
-    "id":"2",
-    "name":"Lift Kit 2",
+    "id":"LK000001",
+    "name":"JKS Jspec 3.5 in. Lift Kit",
     "description":"",
-    "brand":"",
-    "part_number":"1",
-    "price":"132.00",
+    "brand":"JKS",
+    "part_number":"",
+    "price":"1662.50",
     "type":"SUV",
     "image_url":""
-  }],
+  }
+],
 
   "accessory_type":"lift_kit"
 }
