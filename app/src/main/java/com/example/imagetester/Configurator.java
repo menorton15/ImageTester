@@ -35,7 +35,6 @@ public class Configurator extends AppCompatActivity {
         img.setImageBitmap(mergedImages);
     }
 
-    // Merge conflicts galore and more.
 
     private Bitmap mergeImages(Bitmap firstImage, Bitmap secondImage, int x, int y){
 
