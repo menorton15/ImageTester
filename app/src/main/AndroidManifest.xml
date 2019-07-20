@@ -14,9 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SendEmailActivity"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity
-            android:name=".Configurator"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".MainActivity"

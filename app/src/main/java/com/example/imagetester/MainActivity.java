@@ -3,15 +3,11 @@ package com.example.imagetester;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,9 +29,9 @@ import java.util.ArrayList;
 import static java.lang.Float.valueOf;
 
 
-public class MainActivity extends AppCompatActivity implements AccessoryListRecyclerViewAdapter.OnItemClickListener, View.OnClickListener
-
-, AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements
+        AccessoryListRecyclerViewAdapter.OnItemClickListener, View.OnClickListener,
+        AdapterView.OnItemSelectedListener {
 
     private ImageView img;
 
@@ -106,7 +102,8 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         myAccessoryListRecyclerView.setHasFixedSize(true);
         myAccessoryListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        myAccessoryListRecyclerViewAdapter = new AccessoryListRecyclerViewAdapter(this, myAccessoryList);
+        myAccessoryListRecyclerViewAdapter = new AccessoryListRecyclerViewAdapter(this,
+                myAccessoryList);
         myAccessoryListRecyclerView.setAdapter(myAccessoryListRecyclerViewAdapter);
         myAccessoryListRecyclerViewAdapter.setOnItemClickListener(this);
     }
@@ -153,24 +150,6 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         else if(currentVehicleType == "UTV") {
             Picasso.get().load(R.drawable.rzr_4_seat).fit().centerInside().into(img);
         }
-
-        /*Display display = getWindowManager().getDefaultDisplay();
-        DisplayMetrics outMetrics = new DisplayMetrics ();
-        display.getMetrics(outMetrics);
-
-        float density  = getResources().getDisplayMetrics().density;
-        float dpHeight = outMetrics.heightPixels / density;
-        float dpWidth  = outMetrics.widthPixels / density;
-
-        img.getLayoutParams().height = (int)(dpWidth / 4);
-        img.getLayoutParams().width = (int)(dpWidth / 2);
-
-        if (img.getLayoutParams().height > 150 || img.getLayoutParams().width > 300){
-            img.getLayoutParams().height = 150;
-            img.getLayoutParams().width = 300;
-        }
-        img.requestLayout();
-        */
     }
 
     private void setButtons() {
@@ -192,21 +171,16 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
     private void setSpinners() {
         //Year Spinner
         Spinner spinnerYear = findViewById(R.id.spinnerYear);
-        ArrayAdapter<CharSequence> adapterYear = ArrayAdapter.createFromResource(this,R.array.year, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterYear = ArrayAdapter.createFromResource(this,
+                R.array.year, android.R.layout.simple_spinner_item);
         adapterYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerYear.setAdapter(adapterYear);
         spinnerYear.setOnItemSelectedListener(this);
 
-        //Model Spinner
-        Spinner spinnerModel = findViewById(R.id.spinnerModel);
-        ArrayAdapter<CharSequence> adapterModel = ArrayAdapter.createFromResource(this,R.array.model, android.R.layout.simple_spinner_item);
-        adapterModel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerModel.setAdapter(adapterModel);
-        spinnerModel.setOnItemSelectedListener(this);
-
         //Make Spinner
         Spinner spinnerVehicleType = findViewById(R.id.spinnerVehicleType);
-        ArrayAdapter<CharSequence> adapterVehicleType = ArrayAdapter.createFromResource(this,R.array.vehicleType, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterVehicleType = ArrayAdapter.createFromResource(this,
+                R.array.vehicleType, android.R.layout.simple_spinner_item);
         adapterVehicleType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerVehicleType.setAdapter(adapterVehicleType);
         spinnerVehicleType.setOnItemSelectedListener(this);
@@ -235,7 +209,8 @@ public class MainActivity extends AppCompatActivity implements AccessoryListRecy
         switch (v.getId()) {
             case R.id.button_send_to_email:
                 //go to email activity
-                Toast.makeText(this, "This will send your list to email", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "This will send your list to email",
+                        Toast.LENGTH_SHORT).show();
                 openSendEmailActivity(v);
                 break;
             case R.id.button_tires:
