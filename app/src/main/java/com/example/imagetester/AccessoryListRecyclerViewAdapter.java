@@ -2,11 +2,8 @@ package com.example.imagetester;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +12,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
-
-import static com.example.imagetester.AccessoryType.TIRES;
 
 public class AccessoryListRecyclerViewAdapter extends RecyclerView.Adapter<AccessoryListRecyclerViewAdapter.AccessoryListViewHolder> {
 
@@ -57,7 +50,6 @@ public class AccessoryListRecyclerViewAdapter extends RecyclerView.Adapter<Acces
             super(itemView);
             myTextViewAccessoryPartNumber = itemView.findViewById(R.id.text_view_accessory_part_number);
             myTextViewAccessoryName = itemView.findViewById(R.id.text_view_accessory_name);
-            //myTextViewAccessoryDescription = itemView.findViewById(R.id.text_view_accessory_description);
             myTextViewBrand = itemView.findViewById(R.id.text_view_manufacturer_name);
             myTextViewManufacturerPartNumber = itemView.findViewById(R.id.text_view_manufacturer_part_number);
             myTextViewAccessoryPrice = itemView.findViewById(R.id.text_view_accessory_cost);
@@ -77,7 +69,6 @@ public class AccessoryListRecyclerViewAdapter extends RecyclerView.Adapter<Acces
                     }
                 }
             });
-
         }
     }
     @NonNull
@@ -95,7 +86,6 @@ public class AccessoryListRecyclerViewAdapter extends RecyclerView.Adapter<Acces
 
         String partNumber = currentPart.getInternalPartNumber();
         String partName = currentPart.getPartName();
-        //String partDescription = currentPart.getPartDescription();
         String partBrand = currentPart.getPartBrand();
         String manufacturerPartNumber = currentPart.getManufacturerPartNumber();
         String partPrice = currentPart.getPartPrice();
@@ -107,7 +97,6 @@ public class AccessoryListRecyclerViewAdapter extends RecyclerView.Adapter<Acces
 
         holder.myTextViewAccessoryPartNumber.setText(partNumber);
         holder.myTextViewAccessoryName.setText(partName);
-        //holder.myTextViewAccessoryDescription.setText(partDescription);
         holder.myTextViewBrand.setText(partBrand);
         holder.myTextViewManufacturerPartNumber.setText(manufacturerPartNumber);
         holder.myTextViewAccessoryPrice.setText("$ " + partPrice);
@@ -147,5 +136,4 @@ public class AccessoryListRecyclerViewAdapter extends RecyclerView.Adapter<Acces
 
         return count;
     }
-
 }

@@ -2,7 +2,6 @@ package com.example.imagetester;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 

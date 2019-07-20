@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -55,9 +54,6 @@ public class EmailListRecyclerViewAdapter extends RecyclerView.Adapter<EmailList
         this.vehicleAccessoryArrayList = vehicleAccessoryArrayList;
     }
 
-
-
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -80,6 +76,5 @@ public class EmailListRecyclerViewAdapter extends RecyclerView.Adapter<EmailList
     public int getItemCount() {
         return vehicleAccessoryArrayList.size();
     }
-
 
 }
